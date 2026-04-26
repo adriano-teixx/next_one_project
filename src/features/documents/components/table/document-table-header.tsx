@@ -1,0 +1,51 @@
+import { ArrowDown, ArrowUp } from "lucide-react";
+import type {
+  DataTableColumn,
+  DocumentTableHeaderProps,
+} from "./document-table-types";
+
+export function DocumentTableHeader<TRow>({
+  checkboxColumnWidth,
+  columns,
+  onSort,
+  sort,
+}: DocumentTableHeaderProps<TRow>) {
+  return (
+    <thead>
+      <tr className="h-[68px] bg-[#f7f7f9] text-[18px] font-bold text-[#515765]">
+        <th className="px-3" style={{ width: checkboxColumnWidth }}>
+          <span className="block size-[23px] rounded-md border border-[var(--border)] bg-white" />
+        </th>
+        {columns.map((column) => (
+          <th
+            aria-sort={
+              sort.key === column.key
+                ? sort.direction === "asc"
+                  ? "ascending"
+                  : "descending"
+                : undefined
+            }
+            className={column.align === "center" ? "px-3 text-center" : "px-3"}
+            key={column.key}
+          >
+            <button
+              className="documents-column-sort"
+              disabled={!column.sortable}
+              onClick={() => onSort(column as DataTableColumn<TRow>)}
+              type="button"
+            >
+              <span className="truncate">{column.label}</span>
+              {column.sortable && sort.key === column.key ? (
+                sort.direction === "asc" ? (
+                  <ArrowUp size={22} />
+                ) : (
+                  <ArrowDown size={22} />
+                )
+              ) : null}
+            </button>
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+}

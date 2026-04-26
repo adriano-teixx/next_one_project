@@ -1,26 +1,186 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #242938;
+  --muted: #626878;
+  --muted-strong: #4b5160;
+  --border: #dcdfe5;
+  --border-soft: #eceef2;
+  --surface: #ffffff;
+  --surface-muted: #f5f6f8;
+  --surface-panel: #f1f2f5;
+  --surface-control: #e9ecef;
+  --primary: #1155df;
+  --primary-foreground: #ffffff;
+  --nav-active: #343a49;
+  --success-bg: #a9ebc4;
+  --success-fg: #3f5c4d;
+  --danger: #ff3b25;
+  --shadow-soft: 0 8px 24px rgba(16, 24, 40, 0.08);
+  --shadow-popover: 0 10px 30px rgba(17, 24, 39, 0.24);
+  --topbar-height: 62px;
+  --sidebar-width: 345px;
+  --content-gutter-left: 22px;
+  --content-gutter-right: 49px;
+  --content-top-offset: 28px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  min-height: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  min-height: 100%;
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: #c4c8d0;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-topbar {
+  height: var(--topbar-height);
+}
+
+.app-shell-grid {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+}
+
+.app-shell-main {
+  min-width: 0;
+  padding-top: var(--topbar-height);
+}
+
+.app-sidebar {
+  position: sticky;
+  top: var(--topbar-height);
+  height: calc(100dvh - var(--topbar-height));
+  overflow: visible;
+}
+
+.app-content {
+  min-height: calc(100dvh - var(--topbar-height));
+  padding:
+    var(--content-top-offset) var(--content-gutter-right) 0
+    var(--content-gutter-left);
+}
+
+.qive-logo {
+  display: inline-flex;
+  align-items: center;
+  color: #111318;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1.4px;
+  line-height: 1;
+}
+
+.qive-logo-mark {
+  position: relative;
+  display: inline-block;
+  width: 31px;
+  height: 31px;
+  margin-right: -1px;
+  border: 6px solid #101114;
+  border-radius: 50%;
+}
+
+.qive-logo-mark::after {
+  position: absolute;
+  right: -7px;
+  bottom: -4px;
+  width: 16px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ff3b25;
+  content: "";
+  transform: rotate(46deg);
+}
+
+.qive-logo-small {
+  font-size: 18px;
+  letter-spacing: -0.6px;
+}
+
+.qive-logo-small .qive-logo-mark {
+  width: 34px;
+  height: 34px;
+  margin-right: -3px;
+  border-width: 7px;
+}
+
+.qive-logo-small .qive-logo-mark::after {
+  right: -8px;
+  bottom: -4px;
+  width: 18px;
+  height: 8px;
+}
+
+@media (max-width: 1024px) {
+  .qive-logo {
+    font-size: 32px;
+  }
+
+  .qive-logo-mark {
+    width: 30px;
+    height: 30px;
+    border-width: 6px;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  body {
+    min-width: 900px;
+  }
 }

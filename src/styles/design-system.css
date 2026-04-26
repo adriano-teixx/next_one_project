@@ -1,0 +1,395 @@
+:root {
+  --topbar-height: 62px;
+  --sidebar-width: 345px;
+  --content-gutter-left: 22px;
+  --content-gutter-right: 49px;
+  --content-top-offset: 28px;
+  --app-font-scale: 1;
+}
+
+.qive-logo {
+  font-size: 34px;
+  letter-spacing: -1.4px;
+}
+
+.qive-logo-mark {
+  width: 31px;
+  height: 31px;
+  margin-right: -1px;
+  border-width: 6px;
+}
+
+.qive-logo-mark::after {
+  right: -7px;
+  bottom: -4px;
+  width: 16px;
+  height: 7px;
+}
+
+.ui-tabs {
+  display: flex;
+  height: 64px;
+  align-items: flex-end;
+  gap: 48px;
+  padding-inline: 24px;
+  font-size: 24px;
+  color: #5b6270;
+}
+
+.ui-tabs__trigger {
+  height: 100%;
+  padding-inline: 4px;
+  border-bottom: 4px solid transparent;
+  white-space: nowrap;
+}
+
+.ui-tabs__trigger[aria-selected="true"] {
+  border-bottom-color: var(--primary);
+  font-weight: 700;
+}
+
+.ui-select-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 700;
+  color: #555b68;
+}
+
+.ui-search-field {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+}
+
+.ui-search-field__input {
+  min-width: 0;
+  flex: 1;
+  padding-inline: 20px;
+  font-size: 20px;
+  outline: none;
+}
+
+.ui-search-field__button {
+  display: grid;
+  height: 100%;
+  width: 54px;
+  flex-shrink: 0;
+  place-items: center;
+  background: var(--surface-control);
+  color: #4f5562;
+}
+
+.ui-inline-action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.ui-inline-action:disabled {
+  color: #858a95;
+}
+
+.app-sidebar {
+  padding: 12px 8px 16px;
+}
+
+.app-sidebar-panel {
+  height: calc(100dvh - var(--topbar-height) - 28px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 34px 36px;
+  scrollbar-color: #c4c8d0 transparent;
+  scrollbar-width: thin;
+}
+
+.app-sidebar-panel::-webkit-scrollbar {
+  width: 7px;
+}
+
+.app-sidebar-panel::-webkit-scrollbar-thumb {
+  border: 0;
+  border-radius: 999px;
+  background: #c7cbd3;
+}
+
+.app-sidebar-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-sidebar-content {
+  gap: 30px;
+  min-width: 250px;
+  padding-right: 2px;
+}
+
+.app-sidebar-section-title {
+  color: #8d929d;
+}
+
+.app-sidebar-section-list > :not(:last-child) {
+  margin-bottom: 6px;
+}
+
+.app-sidebar-link {
+  color: #5b6270;
+}
+
+.sidebar-collapse-button {
+  position: absolute;
+  top: 24px;
+  right: -22px;
+  z-index: 30;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid #d8dbe2;
+  border-radius: 10px;
+  background: #f1f2f4;
+  color: #69707d;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.sidebar-collapse-button svg {
+  width: 21px;
+  height: 21px;
+}
+
+.group\/sidebar:hover .sidebar-collapse-button,
+.sidebar-collapse-button:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-collapse-button:hover {
+  border-color: #cfd3da;
+  background: #eceef2;
+}
+
+.sidebar-collapse-tooltip {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 14px);
+  z-index: 31;
+  width: max-content;
+  max-width: 220px;
+  padding: 10px 14px;
+  border: 1px solid #d8dbe2;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #242938;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-4px);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.sidebar-collapse-tooltip::before {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 12px;
+  height: 12px;
+  border-bottom: 1px solid #d8dbe2;
+  border-left: 1px solid #d8dbe2;
+  background: #ffffff;
+  content: "";
+  transform: translate(6px, -50%) rotate(45deg);
+}
+
+.sidebar-collapse-button:hover .sidebar-collapse-tooltip,
+.sidebar-collapse-button:focus-visible .sidebar-collapse-tooltip {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1800px) {
+  :root {
+    --topbar-height: 42px;
+    --sidebar-width: 260px;
+    --content-gutter-left: 16px;
+    --content-gutter-right: 33px;
+    --content-top-offset: 19px;
+    --app-font-scale: 0.72;
+  }
+
+  body {
+    font-size: 12px;
+  }
+
+  .qive-logo {
+    font-size: 23px;
+    letter-spacing: -0.9px;
+  }
+
+  .qive-logo-mark {
+    width: 21px;
+    height: 21px;
+    border-width: 4px;
+  }
+
+  .qive-logo-mark::after {
+    right: -5px;
+    bottom: -3px;
+    width: 11px;
+    height: 5px;
+  }
+
+  .app-topbar {
+    padding-inline: 18px;
+  }
+
+  .app-topbar nav {
+    gap: 28px;
+  }
+
+  .app-topbar a[aria-label="Qive"] {
+    margin-right: 44px;
+  }
+
+  .app-topbar nav a {
+    font-size: 14px;
+  }
+
+  .app-topbar nav a:first-child {
+    padding: 7px 15px;
+    font-size: 14px;
+  }
+
+  .app-topbar .topbar-promo {
+    width: 272px;
+    height: 31px;
+    gap: 8px;
+    padding-inline: 16px;
+    font-size: 13px;
+  }
+
+  .app-topbar .topbar-promo svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .app-topbar .topbar-icon-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .app-topbar .topbar-user-button {
+    width: 29px;
+    height: 29px;
+    font-size: 11px;
+  }
+
+  .app-sidebar {
+    padding: 10px 8px 12px;
+  }
+
+  .app-sidebar-panel {
+    height: calc(100dvh - var(--topbar-height) - 22px);
+    padding: 24px 26px;
+  }
+
+  .app-sidebar-content {
+    min-width: 0;
+    gap: 21px;
+  }
+
+  .app-sidebar-section-title {
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+
+  .app-sidebar-section-list > :not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  .app-sidebar-link {
+    border-radius: 7px;
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .sidebar-collapse-button {
+    top: 14px;
+    right: -17px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+
+  .sidebar-collapse-button svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .sidebar-collapse-tooltip {
+    left: calc(100% + 9px);
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .app-content h1 {
+    margin-bottom: 32px;
+    font-size: 19px;
+    line-height: 24px;
+  }
+
+  .help-widget {
+    right: 21px;
+    width: 288px;
+    height: 62px;
+  }
+
+  .help-widget-bar {
+    height: 42px;
+    border-radius: 7px 7px 0 0;
+    padding-inline: 19px;
+    font-size: 15px;
+  }
+
+  .help-widget-bar span {
+    max-width: 228px;
+  }
+
+  .help-widget-bar svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .help-widget-button {
+    width: 46px;
+    height: 46px;
+  }
+
+  .help-widget-button .qive-logo-mark {
+    width: 23px;
+    height: 23px;
+    border-width: 5px;
+  }
+
+  .help-widget-button .qive-logo-mark::after {
+    right: -6px;
+    bottom: -3px;
+    width: 12px;
+    height: 5px;
+  }
+}

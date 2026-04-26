@@ -1,0 +1,76 @@
+export type AppLayoutConfig = {
+  help: {
+    ariaLabel: string;
+    message: string;
+  };
+  sidebar: {
+    activeItem: string;
+    activeSection: string;
+    collapseLabel: string;
+    sections: Array<{
+      items: string[];
+      title: string;
+    }>;
+  };
+  topbar: {
+    activeNavItem: string;
+    navItems: string[];
+    notificationCount: number;
+    promo: string;
+    userInitials: string;
+  };
+};
+
+export const appLayoutConfig: AppLayoutConfig = {
+  help: {
+    ariaLabel: "Abrir suporte",
+    message: "Ajude a melhorar a Qive e con...",
+  },
+  sidebar: {
+    activeItem: "NF-e",
+    activeSection: "Documentos",
+    collapseLabel: "Recolher menu",
+    sections: [
+      {
+        title: "Principal",
+        items: ["Home Qive"],
+      },
+      {
+        title: "Documentos",
+        items: [
+          "NF-e",
+          "NF-e em Etapas",
+          "NFS-e",
+          "CT-e",
+          "CF-e SAT",
+          "NFC-e",
+          "MDF-e",
+          "Outros Documentos",
+        ],
+      },
+      {
+        title: "Financeiro",
+        items: ["Gestão de Pagamentos", "Boletos"],
+      },
+      {
+        title: "Captura e Envio",
+        items: ["Integrações", "Recuperar Notas", "Sincroniza Notas", "Importar XMLs"],
+      },
+      {
+        title: "Relatórios Avançados",
+        items: ["NF-e", "CT-e", "NFS-e"],
+      },
+      {
+        title: "Produtividade",
+        items: ["Fechamento de Mês", "Automações", "Operações em Lote NF-e"],
+      },
+    ],
+  },
+  topbar: {
+    activeNavItem: "Geral",
+    navItems: ["Geral", "Fiscal", "Compras"],
+    notificationCount: 30,
+    promo: "Aproveite: certificado por R$109,00!",
+    userInitials: "TT",
+  },
+};

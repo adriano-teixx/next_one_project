@@ -1,0 +1,109 @@
+"use client";
+
+import { useState } from "react";
+import { AppShell } from "@/components/layout/app-shell";
+import { ColumnsModal } from "../components/columns/columns-modal";
+import { CompanySelector } from "../components/company/company-selector";
+import { DocumentPreviewModal } from "../components/document-preview-modal";
+import { DocumentsEmptyHint } from "../components/feedback/documents-empty-hint";
+import { DocumentsFooter } from "../components/feedback/documents-footer";
+import { FilterDrawer } from "../components/filters/filter-drawer";
+import { DocumentPageTitle } from "../components/page/document-page-title";
+import { DocumentsTable } from "../components/table/documents-table";
+import { DocumentsToolbar } from "../components/toolbar/documents-toolbar";
+import {
+  columnsModalData,
+  documentsEmptyHintData,
+  documentsFooterCopy,
+  documentsPageData,
+  documentsToolbarData,
+} from "../config/document-page-config";
+import {
+  nfeInitialTableSort,
+  nfeRowActions,
+  nfeTableColumns,
+} from "../adapters/nfe-table-adapter";
+import type { DataTableRowAction } from "../components/table/document-table-types";
+import type { DocumentRow } from "../types/document";
+import { useDocumentsQuery } from "../hooks/use-documents-query";
+import { useNfePageData } from "../hooks/use-nfe-page-data";
+
+type ActiveOverlay = "columns" | "filters" | "document" | null;
+
+export function NfeScreen() {
+  const [activeOverlay, setActiveOverlay] = useState<ActiveOverlay>(null);
+  const { companySelectorData, documentPreviewData, filterDrawerData } =
+    useNfePageData();
+  const documentsQuery = useDocumentsQuery({ page: 1, pageSize: 25 });
+  const documents = documentsQuery.data?.items ?? [];
+  const totalDocuments = documentsQuery.data?.total ?? 0;
+  const totalValue = documentsQuery.data?.totalValue ?? "R$ 0,00";
+
+  function handleRowAction(action: DataTableRowAction, row: DocumentRow) {
+    void row;
+
+    if (action.key === "view") {
+      setActiveOverlay("document");
+    }
+  }
+
+  return (
+    <AppShell>
+      <main className="app-content overflow-hidden">
+        <div className="mx-auto w-full max-w-none">
+          <DocumentPageTitle title={documentsPageData.title} />
+
+          <CompanySelector data={companySelectorData} />
+
+          <section className="documents-panel mt-6 overflow-hidden rounded-lg border border-[var(--border)]">
+            <DocumentsToolbar
+              data={documentsToolbarData}
+              onOpenColumns={() => setActiveOverlay("columns")}
+              onOpenFilters={() => setActiveOverlay("filters")}
+              totalDocuments={totalDocuments}
+              totalValue={totalValue}
+            />
+            <DocumentsTable
+              columns={nfeTableColumns}
+              getRowId={(row) => row.number}
+              initialSort={nfeInitialTableSort}
+              onRowAction={handleRowAction}
+              rowActions={nfeRowActions}
+              rows={documents}
+            />
+            <DocumentsEmptyHint data={documentsEmptyHintData} />
+          </section>
+
+          <DocumentsFooter
+            data={{
+              ...documentsFooterCopy,
+              pageSize: documentsQuery.data?.pageSize ?? 25,
+              rangeEnd: documents.length,
+              rangeStart: 1,
+              total: totalDocuments,
+            }}
+          />
+        </div>
+      </main>
+
+      {activeOverlay === "columns" ? (
+        <ColumnsModal
+          data={columnsModalData}
+          onClose={() => setActiveOverlay(null)}
+        />
+      ) : null}
+      {activeOverlay === "filters" ? (
+        <FilterDrawer
+          data={filterDrawerData}
+          onClose={() => setActiveOverlay(null)}
+        />
+      ) : null}
+      {activeOverlay === "document" ? (
+        <DocumentPreviewModal
+          onClose={() => setActiveOverlay(null)}
+          preview={documentPreviewData}
+        />
+      ) : null}
+    </AppShell>
+  );
+}
