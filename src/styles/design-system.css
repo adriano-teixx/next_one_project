@@ -104,22 +104,11 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 34px 36px;
-  scrollbar-color: #c4c8d0 transparent;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 .app-sidebar-panel::-webkit-scrollbar {
-  width: 7px;
-}
-
-.app-sidebar-panel::-webkit-scrollbar-thumb {
-  border: 0;
-  border-radius: 999px;
-  background: #c7cbd3;
-}
-
-.app-sidebar-panel::-webkit-scrollbar-track {
-  background: transparent;
+  display: none;
 }
 
 .app-sidebar-content {
@@ -138,6 +127,34 @@
 
 .app-sidebar-link {
   color: #5b6270;
+}
+
+.app-sidebar-scrollbar {
+  position: absolute;
+  top: 72px;
+  right: 13px;
+  bottom: 72px;
+  z-index: 12;
+  width: 6px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-sidebar[data-scrollbar-visible="true"] .app-sidebar-scrollbar,
+.group\/sidebar:hover .app-sidebar-scrollbar,
+.app-sidebar:focus-within .app-sidebar-scrollbar {
+  opacity: 1;
+}
+
+.app-sidebar-scrollbar-thumb {
+  width: 100%;
+  border-radius: inherit;
+  background: #c7cbd3;
+  transition:
+    background 140ms ease,
+    height 140ms ease,
+    transform 80ms linear;
 }
 
 .sidebar-collapse-button {
@@ -305,6 +322,13 @@
   .app-sidebar-panel {
     height: calc(100dvh - var(--topbar-height) - 22px);
     padding: 24px 26px;
+  }
+
+  .app-sidebar-scrollbar {
+    top: 55px;
+    right: 11px;
+    bottom: 55px;
+    width: 4px;
   }
 
   .app-sidebar-content {
