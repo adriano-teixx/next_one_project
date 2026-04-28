@@ -238,6 +238,46 @@
   transform: translateY(-50%);
 }
 
+.topbar-promo {
+  width: 407px;
+  height: 46px;
+  gap: 12px;
+  padding-inline: 24px;
+  font-size: 20px;
+  white-space: nowrap;
+  transition:
+    background-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.topbar-promo:hover {
+  background: #dcedff;
+}
+
+.topbar-icon-button,
+.topbar-user-button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+  transition: background-color 140ms ease;
+}
+
+.topbar-icon-button:hover,
+.topbar-user-button:hover {
+  background: #ececed;
+}
+
+.topbar-user-button {
+  border-radius: 12px;
+}
+
+.topbar-user-button span {
+  width: 32px;
+  height: 32px;
+}
+
 @media (max-width: 1800px) {
   :root {
     --topbar-height: 42px;
@@ -292,16 +332,24 @@
   }
 
   .app-topbar .topbar-promo {
-    width: 272px;
-    height: 31px;
-    gap: 8px;
-    padding-inline: 16px;
-    font-size: 13px;
+    width: 286px;
+    height: 32px;
+    gap: 10px;
+    padding-inline: 14px;
+    font-size: 15px;
+    line-height: 1;
+    white-space: nowrap;
   }
 
   .app-topbar .topbar-promo svg {
     width: 15px;
     height: 15px;
+  }
+
+  .app-topbar .topbar-icon-button {
+    width: 29px;
+    height: 29px;
+    border-radius: 8px;
   }
 
   .app-topbar .topbar-icon-button svg {
@@ -313,6 +361,11 @@
     width: 29px;
     height: 29px;
     font-size: 11px;
+  }
+
+  .app-topbar .topbar-user-button span {
+    width: 21px;
+    height: 21px;
   }
 
   .app-sidebar {

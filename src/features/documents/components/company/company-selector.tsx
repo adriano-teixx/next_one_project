@@ -187,26 +187,18 @@ export function CompanySelector({ data }: CompanySelectorProps) {
           ) : null}
         </div>
 
-        <div className="company-due-card flex items-center gap-4 rounded-lg bg-[#fff3df] px-4 text-[20px] leading-tight text-[#66626a]">
+        <a
+          className="company-due-card flex items-center rounded-lg bg-[#fff3df] leading-tight text-[#66626a]"
+          href={data.billingNotice.actionHref}
+        >
           <FileText className="shrink-0 text-[#bd6a17]" size={26} />
-          <p>
-            {data.billingNotice.label} {data.billingNotice.amount}{" "}
-            {data.billingNotice.suffix}
-          </p>
-          <a className="font-bold text-[#063cf4]" href={data.billingNotice.actionHref}>
+          <span className="company-due-card-link shrink-0 font-bold text-[#063cf4]">
             {data.billingNotice.actionLabel}
-          </a>
-        </div>
+          </span>
+        </a>
       </div>
 
-      <div className="flex items-start gap-6">
-        <button
-          className="company-consult-button rounded-lg bg-[#153df2] px-5 text-[20px] font-bold text-white shadow-sm"
-          type="button"
-        >
-          {data.primaryActionLabel}
-        </button>
-
+      <div className="company-primary-actions flex items-center gap-6">
         <div className="relative">
           <button
             aria-expanded={isSettingsOpen}

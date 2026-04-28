@@ -45,18 +45,26 @@
 }
 
 .company-due-card {
-  width: 390px;
-  height: 68px;
+  width: 190px;
+  height: 52px;
+  gap: 12px;
+  padding-inline: 18px;
+  border-radius: 8px;
+  font-size: 20px;
 }
 
-.company-consult-button {
-  width: 215px;
-  height: 52px;
+.company-due-card-link {
+  color: #2143e6;
 }
 
 .company-settings-button {
   width: 66px;
   height: 52px;
+  border-radius: 8px;
+}
+
+.company-settings-button:hover {
+  background: #ebebec;
 }
 
 .company-picker-menu {
@@ -712,12 +720,12 @@
   }
 
   .company-due-card {
-    width: 260px;
-    height: 45px;
-    gap: 10px;
-    padding-inline: 11px;
+    width: 126px;
+    height: 35px;
+    gap: 9px;
+    padding-inline: 12px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .company-due-card svg {
@@ -725,15 +733,13 @@
     height: 17px;
   }
 
-  .company-consult-button {
-    width: 144px;
-    height: 35px;
-    border-radius: 6px;
-    font-size: 13px;
+  .company-due-card-link {
+    font-size: 14px;
+    white-space: nowrap;
   }
 
   .company-settings-button {
-    width: 44px;
+    width: 46px;
     height: 35px;
     border-radius: 6px;
   }

@@ -31,7 +31,7 @@ export function Topbar({ data }: TopbarProps) {
 
       <div className="ml-auto flex items-center gap-5">
         <button
-          className="topbar-promo flex h-[46px] w-[407px] items-center justify-center gap-3 rounded-lg bg-[#eaf6ff] px-6 text-[20px] font-medium text-[#114d7b]"
+          className="topbar-promo flex items-center justify-center rounded-lg bg-[#eaf6ff] font-medium text-[#114d7b]"
           type="button"
         >
           <Rocket size={21} strokeWidth={2} />
@@ -39,18 +39,17 @@ export function Topbar({ data }: TopbarProps) {
         </button>
         <button className="topbar-icon-button relative text-[#545a66]" type="button">
           <Bell size={25} strokeWidth={1.8} />
-          <span className="absolute -right-4 -top-4 grid size-8 place-items-center rounded-full bg-[#ff493e] text-[17px] font-bold text-white">
-            {data.notificationCount}
-          </span>
         </button>
         <button className="topbar-icon-button text-[#545a66]" type="button">
           <CircleHelp size={25} strokeWidth={1.8} />
         </button>
         <button
-          className="topbar-user-button grid size-10 place-items-center rounded-full bg-[#dfe4ff] text-[16px] font-bold text-[#17227a]"
+          className="topbar-user-button text-[16px] font-bold text-[#17227a]"
           type="button"
         >
-          {data.userInitials}
+          <span className="grid size-8 place-items-center rounded-full bg-[#dfe4ff]">
+            {data.userInitials}
+          </span>
         </button>
       </div>
     </header>
