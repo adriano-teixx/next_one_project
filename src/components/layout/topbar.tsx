@@ -1,4 +1,4 @@
-import { Bell, ChevronDown, CircleHelp, Moon, User } from "lucide-react";
+import { Bell, CircleHelp, Moon } from "lucide-react";
 
 export function Topbar() {
   return (
@@ -19,10 +19,8 @@ export function Topbar() {
         <button className="topbar-icon-button text-[#3f4652]" type="button">
           <CircleHelp size={25} strokeWidth={1.9} />
         </button>
-        <button className="topbar-profile-button text-[#3f4652]" type="button">
-          <User size={25} fill="currentColor" strokeWidth={0} />
-          <span>Perfil</span>
-          <ChevronDown size={20} strokeWidth={2.2} />
+        <button className="topbar-profile-button" type="button">
+          TT
         </button>
       </div>
     </header>
