@@ -778,13 +778,14 @@
   }
 
   .company-settings-menu {
-    width: 301px;
+    width: 224px;
     border-radius: 7px;
   }
 
   .company-settings-menu button {
-    padding: 15px 19px;
-    font-size: 19px;
+    padding: 10px 14px;
+    font-size: 16px;
+    line-height: 1.35;
   }
 
   .documents-panel {
