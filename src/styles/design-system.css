@@ -209,24 +209,7 @@
   line-height: 1;
 }
 
-.topbar-promo {
-  width: 354px;
-  height: 48px;
-  gap: 10px;
-  padding-inline: 18px;
-  font-size: 18px;
-  white-space: nowrap;
-  transition:
-    background-color 140ms ease,
-    box-shadow 140ms ease;
-}
-
-.topbar-promo:hover {
-  background: #dcedff;
-}
-
-.topbar-icon-button,
-.topbar-user-button {
+.topbar-icon-button {
   display: grid;
   width: 40px;
   height: 40px;
@@ -236,24 +219,36 @@
 }
 
 .topbar-icon-button:hover,
-.topbar-user-button:hover {
+.topbar-profile-button:hover {
   background: #ececed;
 }
 
-.topbar-user-button {
-  border-radius: 12px;
-}
-
-.topbar-user-button span {
-  width: 32px;
-  height: 32px;
-}
-
-.topbar-user-chevron {
+.topbar-status-dot {
+  position: absolute;
+  top: 2px;
+  right: 0;
   display: grid;
-  width: 24px;
-  height: 40px;
+  width: 17px;
+  height: 17px;
   place-items: center;
+  border-radius: 999px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.topbar-profile-button {
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding-inline: 6px 4px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: background-color 140ms ease;
 }
 
 @media (max-width: 1800px) {
@@ -292,38 +287,6 @@
     padding-inline: 28px;
   }
 
-  .app-topbar nav {
-    gap: 28px;
-  }
-
-  .app-topbar a[aria-label="Qive"] {
-    margin-right: 78px;
-  }
-
-  .app-topbar nav a {
-    font-size: 14px;
-  }
-
-  .app-topbar nav a:first-child {
-    padding: 7px 15px;
-    font-size: 14px;
-  }
-
-  .app-topbar .topbar-promo {
-    width: 262px;
-    height: 36px;
-    gap: 8px;
-    padding-inline: 12px;
-    font-size: 14px;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .app-topbar .topbar-promo svg {
-    width: 15px;
-    height: 15px;
-  }
-
   .app-topbar .topbar-icon-button {
     width: 29px;
     height: 29px;
@@ -335,23 +298,21 @@
     height: 18px;
   }
 
-  .app-topbar .topbar-user-button {
-    width: 29px;
+  .app-topbar .topbar-status-dot {
+    top: 1px;
+    right: -1px;
+    width: 13px;
+    height: 13px;
+    font-size: 8px;
+  }
+
+  .app-topbar .topbar-profile-button {
     height: 29px;
-    font-size: 11px;
+    gap: 7px;
+    font-size: 13px;
   }
 
-  .app-topbar .topbar-user-button span {
-    width: 21px;
-    height: 21px;
-  }
-
-  .app-topbar .topbar-user-chevron {
-    width: 18px;
-    height: 29px;
-  }
-
-  .app-topbar .topbar-user-chevron svg {
+  .app-topbar .topbar-profile-button svg {
     width: 14px;
     height: 14px;
   }
