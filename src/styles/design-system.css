@@ -1,15 +1,15 @@
 :root {
-  --topbar-height: 62px;
-  --sidebar-width: 345px;
-  --content-gutter-left: 22px;
-  --content-gutter-right: 49px;
-  --content-top-offset: 28px;
+  --topbar-height: 84px;
+  --sidebar-width: 333px;
+  --content-gutter-left: 40px;
+  --content-gutter-right: 57px;
+  --content-top-offset: 32px;
   --app-font-scale: 1;
 }
 
 .qive-logo {
   font-size: 34px;
-  letter-spacing: -1.4px;
+  letter-spacing: 0;
 }
 
 .qive-logo-mark {
@@ -95,15 +95,13 @@
   color: #858a95;
 }
 
-.app-sidebar {
-  padding: 12px 8px 16px;
-}
-
 .app-sidebar-panel {
-  height: calc(100dvh - var(--topbar-height) - 28px);
+  display: flex;
+  height: calc(100dvh - var(--topbar-height));
+  flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 34px 36px;
+  padding: 36px 22px 28px;
   scrollbar-width: none;
 }
 
@@ -112,138 +110,111 @@
 }
 
 .app-sidebar-content {
-  gap: 30px;
+  gap: 28px;
   min-width: 250px;
-  padding-right: 2px;
 }
 
 .app-sidebar-section-title {
   color: #8d929d;
+  margin: 0 0 14px;
+  padding-inline: 17px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .app-sidebar-section-list > :not(:last-child) {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .app-sidebar-link {
-  color: #5b6270;
-}
-
-.app-sidebar-scrollbar {
-  position: absolute;
-  top: 72px;
-  right: 13px;
-  bottom: 72px;
-  z-index: 12;
-  width: 6px;
-  border-radius: 999px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.app-sidebar[data-scrollbar-visible="true"] .app-sidebar-scrollbar,
-.group\/sidebar:hover .app-sidebar-scrollbar,
-.app-sidebar:focus-within .app-sidebar-scrollbar {
-  opacity: 1;
-}
-
-.app-sidebar-scrollbar-thumb {
-  width: 100%;
-  border-radius: inherit;
-  background: #c7cbd3;
-  transition:
-    background 140ms ease,
-    height 140ms ease,
-    transform 80ms linear;
-}
-
-.sidebar-collapse-button {
-  position: absolute;
-  top: 24px;
-  right: -22px;
-  z-index: 30;
-  display: grid;
-  width: 44px;
+  display: flex;
   height: 44px;
-  place-items: center;
-  border: 1px solid #d8dbe2;
+  align-items: center;
+  gap: 16px;
   border-radius: 10px;
-  background: #f1f2f4;
-  color: #69707d;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 160ms ease,
-    background 160ms ease,
-    border-color 160ms ease;
-}
-
-.sidebar-collapse-button svg {
-  width: 21px;
-  height: 21px;
-}
-
-.group\/sidebar:hover .sidebar-collapse-button,
-.sidebar-collapse-button:focus-visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.sidebar-collapse-button:hover {
-  border-color: #cfd3da;
-  background: #eceef2;
-}
-
-.sidebar-collapse-tooltip {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + 14px);
-  z-index: 31;
-  width: max-content;
-  max-width: 220px;
-  padding: 10px 14px;
-  border: 1px solid #d8dbe2;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #242938;
-  font-size: 22px;
+  padding-inline: 17px;
+  color: #5b6270;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 1.2;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(-4px);
+  line-height: 1;
   transition:
-    opacity 140ms ease,
-    transform 140ms ease;
+    background-color 140ms ease,
+    color 140ms ease;
 }
 
-.sidebar-collapse-tooltip::before {
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  width: 12px;
-  height: 12px;
-  border-bottom: 1px solid #d8dbe2;
-  border-left: 1px solid #d8dbe2;
+.app-sidebar-link svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  color: #667085;
+  stroke-width: 1.9;
+}
+
+.app-sidebar-link:hover {
+  background: #f4f7fb;
+  color: #344054;
+}
+
+.app-sidebar-link-active {
+  background: #eaf2ff;
+  color: #1f5ed9;
+  font-weight: 700;
+}
+
+.app-sidebar-link-active svg {
+  color: #2563db;
+  fill: #2563db;
+  stroke-width: 2;
+}
+
+.app-sidebar-help {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 18px;
+  gap: 12px;
+  align-items: center;
+  min-height: 72px;
+  margin-top: auto;
+  border: 1px solid #dfe3ea;
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: #485164;
   background: #ffffff;
-  content: "";
-  transform: translate(6px, -50%) rotate(45deg);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
 
-.sidebar-collapse-button:hover .sidebar-collapse-tooltip,
-.sidebar-collapse-button:focus-visible .sidebar-collapse-tooltip {
-  opacity: 1;
-  transform: translateY(-50%);
+.app-sidebar-help svg {
+  width: 20px;
+  height: 20px;
+}
+
+.app-sidebar-help span {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.app-sidebar-help strong {
+  color: #303747;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.app-sidebar-help small {
+  color: #697386;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .topbar-promo {
-  width: 407px;
-  height: 46px;
-  gap: 12px;
-  padding-inline: 24px;
-  font-size: 20px;
+  width: 354px;
+  height: 48px;
+  gap: 10px;
+  padding-inline: 18px;
+  font-size: 18px;
   white-space: nowrap;
   transition:
     background-color 140ms ease,
@@ -278,13 +249,20 @@
   height: 32px;
 }
 
+.topbar-user-chevron {
+  display: grid;
+  width: 24px;
+  height: 40px;
+  place-items: center;
+}
+
 @media (max-width: 1800px) {
   :root {
-    --topbar-height: 42px;
-    --sidebar-width: 260px;
-    --content-gutter-left: 16px;
-    --content-gutter-right: 33px;
-    --content-top-offset: 19px;
+    --topbar-height: 60px;
+    --sidebar-width: 240px;
+    --content-gutter-left: 28px;
+    --content-gutter-right: 40px;
+    --content-top-offset: 24px;
     --app-font-scale: 0.72;
   }
 
@@ -294,7 +272,7 @@
 
   .qive-logo {
     font-size: 23px;
-    letter-spacing: -0.9px;
+    letter-spacing: 0;
   }
 
   .qive-logo-mark {
@@ -311,7 +289,7 @@
   }
 
   .app-topbar {
-    padding-inline: 18px;
+    padding-inline: 28px;
   }
 
   .app-topbar nav {
@@ -319,7 +297,7 @@
   }
 
   .app-topbar a[aria-label="Qive"] {
-    margin-right: 44px;
+    margin-right: 78px;
   }
 
   .app-topbar nav a {
@@ -332,11 +310,11 @@
   }
 
   .app-topbar .topbar-promo {
-    width: 286px;
-    height: 32px;
-    gap: 10px;
-    padding-inline: 14px;
-    font-size: 15px;
+    width: 262px;
+    height: 36px;
+    gap: 8px;
+    padding-inline: 12px;
+    font-size: 14px;
     line-height: 1;
     white-space: nowrap;
   }
@@ -368,30 +346,30 @@
     height: 21px;
   }
 
-  .app-sidebar {
-    padding: 10px 8px 12px;
+  .app-topbar .topbar-user-chevron {
+    width: 18px;
+    height: 29px;
+  }
+
+  .app-topbar .topbar-user-chevron svg {
+    width: 14px;
+    height: 14px;
   }
 
   .app-sidebar-panel {
-    height: calc(100dvh - var(--topbar-height) - 22px);
-    padding: 24px 26px;
-  }
-
-  .app-sidebar-scrollbar {
-    top: 55px;
-    right: 11px;
-    bottom: 55px;
-    width: 4px;
+    height: calc(100dvh - var(--topbar-height));
+    padding: 28px 16px 20px;
   }
 
   .app-sidebar-content {
     min-width: 0;
-    gap: 21px;
+    gap: 22px;
   }
 
   .app-sidebar-section-title {
-    margin-bottom: 12px;
-    font-size: 11px;
+    margin-bottom: 10px;
+    padding-inline: 12px;
+    font-size: 10px;
   }
 
   .app-sidebar-section-list > :not(:last-child) {
@@ -399,29 +377,37 @@
   }
 
   .app-sidebar-link {
+    height: 32px;
+    gap: 11px;
     border-radius: 7px;
-    padding: 6px 8px;
-    font-size: 14px;
+    padding-inline: 12px;
+    font-size: 13px;
   }
 
-  .sidebar-collapse-button {
-    top: 14px;
-    right: -17px;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
+  .app-sidebar-link svg {
+    width: 15px;
+    height: 15px;
   }
 
-  .sidebar-collapse-button svg {
-    width: 17px;
-    height: 17px;
+  .app-sidebar-help {
+    grid-template-columns: 16px minmax(0, 1fr) 14px;
+    gap: 8px;
+    min-height: 52px;
+    border-radius: 7px;
+    padding: 10px 12px;
   }
 
-  .sidebar-collapse-tooltip {
-    left: calc(100% + 9px);
-    padding: 7px 10px;
-    border-radius: 8px;
-    font-size: 15px;
+  .app-sidebar-help svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .app-sidebar-help strong {
+    font-size: 11px;
+  }
+
+  .app-sidebar-help small {
+    font-size: 9px;
   }
 
   .app-content h1 {

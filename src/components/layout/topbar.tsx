@@ -1,4 +1,4 @@
-import { Bell, CircleHelp, Rocket } from "lucide-react";
+import { Bell, ChevronDown, CircleHelp, Gift } from "lucide-react";
 import type { AppLayoutConfig } from "@/config/app-layout";
 
 type TopbarProps = {
@@ -7,7 +7,7 @@ type TopbarProps = {
 
 export function Topbar({ data }: TopbarProps) {
   return (
-    <header className="app-topbar fixed inset-x-0 top-0 z-30 flex items-center border-b border-[var(--border)] bg-white px-7">
+    <header className="app-topbar fixed inset-x-0 top-0 z-30 flex items-center border-b border-[#eaecf0] bg-[#f8fafc] px-7">
       <a aria-label="Qive" className="qive-logo mr-[66px]" href="#">
         <span className="qive-logo-mark" />
         ive
@@ -34,7 +34,7 @@ export function Topbar({ data }: TopbarProps) {
           className="topbar-promo flex items-center justify-center rounded-lg bg-[#eaf6ff] font-medium text-[#114d7b]"
           type="button"
         >
-          <Rocket size={21} strokeWidth={2} />
+          <Gift size={21} strokeWidth={2} />
           {data.promo}
         </button>
         <button className="topbar-icon-button relative text-[#545a66]" type="button">
@@ -50,6 +50,9 @@ export function Topbar({ data }: TopbarProps) {
           <span className="grid size-8 place-items-center rounded-full bg-[#dfe4ff]">
             {data.userInitials}
           </span>
+        </button>
+        <button className="topbar-user-chevron text-[#545a66]" type="button">
+          <ChevronDown size={18} strokeWidth={2} />
         </button>
       </div>
     </header>

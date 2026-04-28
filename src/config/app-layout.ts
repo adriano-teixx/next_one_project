@@ -54,15 +54,7 @@ export const appLayoutConfig: AppLayoutConfig = {
       },
       {
         title: "Captura e Envio",
-        items: ["Integrações", "Recuperar Notas", "Sincroniza Notas", "Importar XMLs"],
-      },
-      {
-        title: "Relatórios Avançados",
-        items: ["NF-e", "CT-e", "NFS-e"],
-      },
-      {
-        title: "Produtividade",
-        items: ["Fechamento de Mês", "Automações", "Operações em Lote NF-e"],
+        items: ["Integrações", "Recuperar Notas", "Sincronizar Notas"],
       },
     ],
   },

@@ -20,11 +20,11 @@
   --danger: #ff3b25;
   --shadow-soft: 0 8px 24px rgba(16, 24, 40, 0.08);
   --shadow-popover: 0 10px 30px rgba(17, 24, 39, 0.24);
-  --topbar-height: 62px;
-  --sidebar-width: 345px;
-  --content-gutter-left: 22px;
-  --content-gutter-right: 49px;
-  --content-top-offset: 28px;
+  --topbar-height: 84px;
+  --sidebar-width: 333px;
+  --content-gutter-left: 40px;
+  --content-gutter-right: 57px;
+  --content-top-offset: 32px;
 }
 
 * {
@@ -117,7 +117,7 @@ button:disabled {
   color: #111318;
   font-size: 34px;
   font-weight: 800;
-  letter-spacing: -1.4px;
+  letter-spacing: 0;
   line-height: 1;
 }
 
@@ -145,7 +145,7 @@ button:disabled {
 
 .qive-logo-small {
   font-size: 18px;
-  letter-spacing: -0.6px;
+  letter-spacing: 0;
 }
 
 .qive-logo-small .qive-logo-mark {
