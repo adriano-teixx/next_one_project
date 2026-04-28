@@ -1,20 +1,28 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
-import type {
-  DataTableColumn,
-  DocumentTableHeaderProps,
-} from "./document-table-types";
+import type { DocumentTableHeaderProps } from "./document-table-types";
 
 export function DocumentTableHeader<TRow>({
   checkboxColumnWidth,
   columns,
+  isAllSelected,
+  isPartiallySelected,
   onSort,
+  onToggleSelectAll,
   sort,
 }: DocumentTableHeaderProps<TRow>) {
   return (
     <thead>
       <tr className="h-[68px] bg-[#f7f7f9] text-[18px] font-bold text-[#515765]">
         <th className="px-3" style={{ width: checkboxColumnWidth }}>
-          <span className="block size-[23px] rounded-md border border-[var(--border)] bg-white" />
+          <button
+            aria-checked={isPartiallySelected ? "mixed" : Boolean(isAllSelected)}
+            className="documents-row-check grid place-items-center rounded-md border border-[var(--border)] bg-white"
+            data-partial={isPartiallySelected ? "true" : undefined}
+            data-selected={isAllSelected ? "true" : undefined}
+            onClick={onToggleSelectAll}
+            role="checkbox"
+            type="button"
+          />
         </th>
         {columns.map((column) => (
           <th
@@ -31,7 +39,7 @@ export function DocumentTableHeader<TRow>({
             <button
               className="documents-column-sort"
               disabled={!column.sortable}
-              onClick={() => onSort(column as DataTableColumn<TRow>)}
+              onClick={() => onSort(column)}
               type="button"
             >
               <span className="truncate">{column.label}</span>

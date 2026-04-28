@@ -16,6 +16,7 @@ export type CompanySelectorData = {
   companies: CompanyOption[];
   hiddenCompaniesCount: number;
   primaryActionLabel: string;
+  settingsActions: string[];
   settingsAriaLabel: string;
 };
 
@@ -53,14 +54,17 @@ export type DocumentsToolbarAction = {
   key: string;
   label: string;
   menu?: boolean;
+  menuItems?: string[];
 };
 
 export type DocumentsToolbarData = {
   actions: DocumentsToolbarAction[];
   filtersLabel: string;
   periodLabel: string;
+  periodOptions: string[];
   periodValue: string;
   searchKind: string;
+  searchKindOptions: string[];
   searchPlaceholder: string;
   selectedCount: number;
   selectAllLabel: string;

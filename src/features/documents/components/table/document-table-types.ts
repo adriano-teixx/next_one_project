@@ -27,11 +27,15 @@ export type DataTableRowAction = {
   key: string;
   label: string;
   menu?: boolean;
+  menuItems?: string[];
 };
 
 export type DocumentTableHeaderProps<TRow> = {
   checkboxColumnWidth: number;
   columns: DataTableColumn<TRow>[];
+  isAllSelected?: boolean;
+  isPartiallySelected?: boolean;
   onSort: (column: DataTableColumn<TRow>) => void;
+  onToggleSelectAll?: () => void;
   sort: DocumentTableSort;
 };

@@ -19,8 +19,10 @@ type DocumentsTableProps<TRow> = {
   getRowId: (row: TRow) => string;
   initialSort: DocumentTableSort;
   onRowAction: (action: DataTableRowAction, row: TRow) => void;
+  onSelectionChange?: (selectedRowIds: string[]) => void;
   rowActions: DataTableRowAction[];
   rows: TRow[];
+  selectedRowIds?: string[];
 };
 
 export function DocumentsTable<TRow extends Record<string, unknown>>({
@@ -28,12 +30,18 @@ export function DocumentsTable<TRow extends Record<string, unknown>>({
   getRowId,
   initialSort,
   onRowAction,
+  onSelectionChange,
   rowActions,
   rows,
+  selectedRowIds = [],
 }: DocumentsTableProps<TRow>) {
   const { activeRowId, scrollMetrics, syncScrollMetrics, tableContainerRef } =
     useDocumentTableHoverActions();
   const [sort, setSort] = useState<DocumentTableSort>(initialSort);
+  const selectedRowIdSet = useMemo(
+    () => new Set(selectedRowIds),
+    [selectedRowIds],
+  );
   const tableWidth =
     checkboxColumnWidth +
     columns.reduce((total, column) => total + column.width, 0);
@@ -84,6 +92,43 @@ export function DocumentsTable<TRow extends Record<string, unknown>>({
     }
   }
 
+  function toggleRowSelection(rowId: string) {
+    const nextSelected = new Set(selectedRowIdSet);
+
+    if (nextSelected.has(rowId)) {
+      nextSelected.delete(rowId);
+    } else {
+      nextSelected.add(rowId);
+    }
+
+    onSelectionChange?.([...nextSelected]);
+  }
+
+  function toggleVisibleRowsSelection() {
+    const visibleRowIds = sortedRows.map((row) => getRowId(row));
+    const hasSelectedEveryVisibleRow = visibleRowIds.every((rowId) =>
+      selectedRowIdSet.has(rowId),
+    );
+    const nextSelected = new Set(selectedRowIdSet);
+
+    visibleRowIds.forEach((rowId) => {
+      if (hasSelectedEveryVisibleRow) {
+        nextSelected.delete(rowId);
+      } else {
+        nextSelected.add(rowId);
+      }
+    });
+
+    onSelectionChange?.([...nextSelected]);
+  }
+
+  const isAllVisibleRowsSelected =
+    sortedRows.length > 0 &&
+    sortedRows.every((row) => selectedRowIdSet.has(getRowId(row)));
+  const isPartiallySelected =
+    !isAllVisibleRowsSelected &&
+    sortedRows.some((row) => selectedRowIdSet.has(getRowId(row)));
+
   return (
     <div
       className="documents-table relative overflow-x-auto overflow-y-hidden rounded-lg border-t border-[var(--border-soft)]"
@@ -109,7 +154,10 @@ export function DocumentsTable<TRow extends Record<string, unknown>>({
         <DocumentTableHeader
           checkboxColumnWidth={checkboxColumnWidth}
           columns={columns}
+          isAllSelected={isAllVisibleRowsSelected}
+          isPartiallySelected={isPartiallySelected}
           onSort={toggleSort}
+          onToggleSelectAll={toggleVisibleRowsSelection}
           sort={sort}
         />
         <tbody className="text-[19px] text-[#5d6473]">
@@ -118,9 +166,11 @@ export function DocumentsTable<TRow extends Record<string, unknown>>({
               columns={columns}
               dispatchAction={(actionKey) => dispatchAction(actionKey, row)}
               key={getRowId(row)}
+              onToggleSelection={() => toggleRowSelection(getRowId(row))}
               row={row}
               rowId={getRowId(row)}
               rowIndex={rowIndex}
+              selected={selectedRowIdSet.has(getRowId(row))}
             />
           ))}
         </tbody>

@@ -5,22 +5,27 @@ import type { DataTableColumn } from "./document-table-types";
 type DocumentTableRowProps<TRow> = {
   columns: DataTableColumn<TRow>[];
   dispatchAction: (actionKey: string) => void;
+  onToggleSelection: () => void;
   rowId: string;
   row: TRow;
   rowIndex: number;
+  selected: boolean;
 };
 
 export function DocumentTableRow<TRow extends Record<string, unknown>>({
   columns,
   dispatchAction,
+  onToggleSelection,
   rowId,
   row,
   rowIndex,
+  selected,
 }: DocumentTableRowProps<TRow>) {
   return (
     <tr
       className="documents-data-row h-[64px] border-t border-[var(--border-soft)] bg-white transition-colors"
       data-row-id={rowId}
+      data-selected={selected ? "true" : undefined}
       style={
         {
           "--row-index": rowIndex,
@@ -28,7 +33,13 @@ export function DocumentTableRow<TRow extends Record<string, unknown>>({
       }
     >
       <td className="px-3">
-        <span className="documents-row-check block size-[23px] rounded-md border border-[var(--border)] bg-white" />
+        <button
+          aria-checked={selected}
+          className="documents-row-check grid place-items-center rounded-md border border-[var(--border)] bg-white"
+          onClick={onToggleSelection}
+          role="checkbox"
+          type="button"
+        />
       </td>
       {columns.map((column) => (
         <td

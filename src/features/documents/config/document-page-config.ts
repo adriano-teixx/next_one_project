@@ -13,7 +13,13 @@ export const documentsPageData: DocumentsPageData = {
 export const documentsToolbarData: DocumentsToolbarData = {
   actions: [
     { icon: "columns", key: "columns", label: "Colunas" },
-    { icon: "tag", key: "labels", label: "Etiquetas", menu: true },
+    {
+      icon: "tag",
+      key: "labels",
+      label: "Etiquetas",
+      menu: true,
+      menuItems: ["Adicionar etiqueta", "Gerenciar etiquetas"],
+    },
     {
       disabled: true,
       icon: "fileSearch",
@@ -27,6 +33,7 @@ export const documentsToolbarData: DocumentsToolbarData = {
       key: "download",
       label: "Baixar e compartilhar",
       menu: true,
+      menuItems: ["Baixar NF-e em XML", "Baixar NF-e em PDF"],
     },
     {
       disabled: true,
@@ -34,12 +41,26 @@ export const documentsToolbarData: DocumentsToolbarData = {
       key: "manifest",
       label: "Manifestar",
       menu: true,
+      menuItems: ["Confirmar", "Ciência", "Desconhecida", "Não realizada"],
     },
   ],
   filtersLabel: "Filtros",
   periodLabel: "Período de emissão:",
+  periodOptions: [
+    "Últimos 90 dias",
+    "Mês anterior",
+    "Mês atual",
+    "Todo o período",
+    "Personalizado",
+  ],
   periodValue: "Últimos 90 dias",
   searchKind: "Conteúdo da NF-e",
+  searchKindOptions: [
+    "Conteúdo da NF-e",
+    "Nome/CNPJ da Empresa",
+    "Chave de Acesso",
+    "Número da NF-e",
+  ],
   searchPlaceholder: "Busque por qualquer informação dentro da NF-e",
   selectedCount: 0,
   selectAllLabel: "Selecionar todas",

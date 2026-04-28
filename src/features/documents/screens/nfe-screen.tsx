@@ -32,6 +32,7 @@ type ActiveOverlay = "columns" | "filters" | "document" | null;
 
 export function NfeScreen() {
   const [activeOverlay, setActiveOverlay] = useState<ActiveOverlay>(null);
+  const [selectedDocumentIds, setSelectedDocumentIds] = useState<string[]>([]);
   const { companySelectorData, documentPreviewData, filterDrawerData } =
     useNfePageData();
   const documentsQuery = useDocumentsQuery({ page: 1, pageSize: 25 });
@@ -40,11 +41,32 @@ export function NfeScreen() {
   const totalValue = documentsQuery.data?.totalValue ?? "R$ 0,00";
 
   function handleRowAction(action: DataTableRowAction, row: DocumentRow) {
-    void row;
-
     if (action.key === "view") {
+      void row;
       setActiveOverlay("document");
     }
+  }
+
+  function toggleSelectAllVisibleDocuments() {
+    const visibleDocumentIds = documents.map((document) => document.number);
+    const selectedDocumentIdSet = new Set(selectedDocumentIds);
+    const hasSelectedAllVisibleDocuments = visibleDocumentIds.every((documentId) =>
+      selectedDocumentIdSet.has(documentId),
+    );
+
+    setSelectedDocumentIds((currentSelectedIds) => {
+      const nextSelectedIds = new Set(currentSelectedIds);
+
+      visibleDocumentIds.forEach((documentId) => {
+        if (hasSelectedAllVisibleDocuments) {
+          nextSelectedIds.delete(documentId);
+        } else {
+          nextSelectedIds.add(documentId);
+        }
+      });
+
+      return [...nextSelectedIds];
+    });
   }
 
   return (
@@ -60,6 +82,8 @@ export function NfeScreen() {
               data={documentsToolbarData}
               onOpenColumns={() => setActiveOverlay("columns")}
               onOpenFilters={() => setActiveOverlay("filters")}
+              onToggleSelectAll={toggleSelectAllVisibleDocuments}
+              selectedCount={selectedDocumentIds.length}
               totalDocuments={totalDocuments}
               totalValue={totalValue}
             />
@@ -67,9 +91,11 @@ export function NfeScreen() {
               columns={nfeTableColumns}
               getRowId={(row) => row.number}
               initialSort={nfeInitialTableSort}
+              onSelectionChange={setSelectedDocumentIds}
               onRowAction={handleRowAction}
               rowActions={nfeRowActions}
               rows={documents}
+              selectedRowIds={selectedDocumentIds}
             />
             <DocumentsEmptyHint data={documentsEmptyHintData} />
           </section>

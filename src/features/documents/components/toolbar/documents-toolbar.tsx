@@ -10,6 +10,8 @@ type DocumentsToolbarProps = {
   data: DocumentsToolbarData;
   onOpenColumns: () => void;
   onOpenFilters: () => void;
+  onToggleSelectAll: () => void;
+  selectedCount: number;
   totalDocuments: number;
   totalValue: string;
 };
@@ -18,6 +20,8 @@ export function DocumentsToolbar({
   data,
   onOpenColumns,
   onOpenFilters,
+  onToggleSelectAll,
+  selectedCount,
   totalDocuments,
   totalValue,
 }: DocumentsToolbarProps) {
@@ -30,10 +34,12 @@ export function DocumentsToolbar({
           filtersLabel={data.filtersLabel}
           onOpenFilters={onOpenFilters}
           searchKind={data.searchKind}
+          searchKindOptions={data.searchKindOptions}
           searchPlaceholder={data.searchPlaceholder}
         />
         <DocumentPeriodSummary
           periodLabel={data.periodLabel}
+          periodOptions={data.periodOptions}
           periodValue={data.periodValue}
           totalDocuments={totalDocuments}
           totalPrefix={data.totalPrefix}
@@ -43,7 +49,9 @@ export function DocumentsToolbar({
         <DocumentBulkActions
           actions={data.actions}
           onOpenColumns={onOpenColumns}
+          onToggleSelectAll={onToggleSelectAll}
           selectedCount={data.selectedCount}
+          selectedCountOverride={selectedCount}
           selectAllLabel={data.selectAllLabel}
           totalDocuments={totalDocuments}
         />

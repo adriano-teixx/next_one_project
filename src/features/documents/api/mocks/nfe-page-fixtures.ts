@@ -29,9 +29,29 @@ export const companySelectorData: CompanySelectorData = {
       label:
         "MT [05.280.269/0003-54] TECNOMYL BRASIL DISTRIBUIDORA DE PRODUTOS AGRICOLAS LTDA",
     },
+    {
+      id: "05.280.269/0004-35",
+      label:
+        "SP [05.280.269/0004-35] TECNOMYL BRASIL DISTRIBUIDORA DE PRODUTOS AGRICOLAS LTDA",
+    },
+    {
+      id: "05.280.269/0005-16",
+      label:
+        "RS [05.280.269/0005-16] TECNOMYL BRASIL DISTRIBUIDORA DE PRODUTOS AGRICOLAS LTDA",
+    },
+    {
+      id: "05.280.269/0006-05",
+      label:
+        "BA [05.280.269/0006-05] TECNOMYL BRASIL DISTRIBUIDORA DE PRODUTOS AGRICOLAS LTDA",
+    },
   ],
-  hiddenCompaniesCount: 25,
+  hiddenCompaniesCount: 22,
   primaryActionLabel: "Consulta completa",
+  settingsActions: [
+    "Configurar certificado",
+    "Agendar consultas diárias",
+    "Convidar contador",
+  ],
   settingsAriaLabel: "Abrir configurações da consulta",
 };
 

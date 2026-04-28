@@ -85,7 +85,25 @@ export const nfeRowActions: DataTableRowAction[] = [
   { icon: "eye", key: "view", label: "Visualizar" },
   { icon: "eye", key: "referencedCte", label: "CT-e referenciada" },
   { icon: "refresh", key: "refreshStatus", label: "Atualizar status" },
-  { icon: "tag", key: "labels", label: "Etiquetas", menu: true },
-  { icon: "download", key: "download", label: "Baixar", menu: true },
-  { icon: "fileText", key: "manifest", label: "Manifestar", menu: true },
+  {
+    icon: "tag",
+    key: "labels",
+    label: "Etiquetas",
+    menu: true,
+    menuItems: ["Adicionar etiqueta", "Gerenciar etiquetas"],
+  },
+  {
+    icon: "download",
+    key: "download",
+    label: "Baixar",
+    menu: true,
+    menuItems: ["Baixar NF-e em XML", "Baixar NF-e em PDF"],
+  },
+  {
+    icon: "fileText",
+    key: "manifest",
+    label: "Manifestar",
+    menu: true,
+    menuItems: ["Confirmar", "Ciência", "Desconhecida", "Não realizada"],
+  },
 ];
