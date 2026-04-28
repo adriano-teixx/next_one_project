@@ -40,7 +40,7 @@ const itemIconMap: Record<string, LucideIcon> = {
 
 export function Sidebar({ data }: SidebarProps) {
   return (
-    <aside className="app-sidebar bg-white">
+    <aside className="app-sidebar bg-[var(--sidebar-bg)]">
       <nav aria-label="Menu principal" className="app-sidebar-panel">
         <div className="app-sidebar-content flex min-w-0 flex-col">
           {data.sections.map((section) => (

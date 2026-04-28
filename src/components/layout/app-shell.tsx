@@ -5,7 +5,7 @@ import { Topbar } from "./topbar";
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh bg-white text-[var(--foreground)]">
+    <div className="min-h-dvh bg-[var(--background)] text-[var(--foreground)]">
       <Topbar />
       <div className="app-shell-grid">
         <Sidebar data={appLayoutConfig.sidebar} />

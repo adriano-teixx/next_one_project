@@ -29,7 +29,7 @@ export function DocumentsToolbar({
     <>
       <DocumentTabs activeTab={data.tabs[0]} tabs={data.tabs} />
 
-      <div className="documents-controls border-t border-[var(--border)] bg-white px-6 pb-0 pt-5">
+      <div className="documents-controls border-t border-[var(--border)] bg-[var(--surface)] px-6 pb-0 pt-5">
         <DocumentSearchControls
           filtersLabel={data.filtersLabel}
           onOpenFilters={onOpenFilters}

@@ -79,7 +79,7 @@ export function CompanySelector({ data }: CompanySelectorProps) {
     <div className="flex items-start justify-between gap-6">
       <div className="flex items-start gap-6">
         <div
-          className="company-picker relative flex items-start rounded-lg border border-[var(--border)] bg-white px-2 py-2 shadow-sm"
+          className="company-picker relative flex items-start rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2 py-2 shadow-sm"
           data-open={isCompanyMenuOpen ? "true" : undefined}
           onClick={() => {
             setCompanyMenuOpen(true);
@@ -96,14 +96,14 @@ export function CompanySelector({ data }: CompanySelectorProps) {
           <div className="company-picker-value flex min-w-0 flex-col items-start gap-1 pr-14">
             {visibleCompanies.slice(0, 3).map((company) => (
               <span
-                className="company-picker-chip max-w-full truncate rounded-full bg-[#e7e9eb] px-3 py-1 text-[18px] leading-none text-[#5a606d]"
+                className="company-picker-chip max-w-full truncate rounded-full bg-[var(--surface-control)] px-3 py-1 text-[18px] leading-none text-[var(--muted)]"
                 key={company.id}
               >
                 {company.label}
               </span>
             ))}
             {visibleCompanies.length > 3 || data.hiddenCompaniesCount > 0 ? (
-              <span className="company-picker-chip rounded-full bg-[#dfe2e5] px-3 py-1 text-[18px] leading-none text-[#5a606d]">
+              <span className="company-picker-chip rounded-full bg-[var(--surface-control)] px-3 py-1 text-[18px] leading-none text-[var(--muted)]">
                 +{data.hiddenCompaniesCount + Math.max(visibleCompanies.length - 3, 0)}
               </span>
             ) : null}
@@ -188,11 +188,11 @@ export function CompanySelector({ data }: CompanySelectorProps) {
         </div>
 
         <a
-          className="company-due-card flex items-center rounded-lg bg-[#fff3df] leading-tight text-[#66626a]"
+          className="company-due-card flex items-center rounded-lg bg-[var(--warning-surface)] leading-tight text-[var(--muted)]"
           href={data.billingNotice.actionHref}
         >
-          <FileText className="shrink-0 text-[#bd6a17]" size={26} />
-          <span className="company-due-card-link shrink-0 font-bold text-[#063cf4]">
+          <FileText className="shrink-0 text-[var(--warning-icon)]" size={26} />
+          <span className="company-due-card-link shrink-0 font-bold">
             {data.billingNotice.actionLabel}
           </span>
         </a>
@@ -203,7 +203,7 @@ export function CompanySelector({ data }: CompanySelectorProps) {
           <button
             aria-expanded={isSettingsOpen}
             aria-label={data.settingsAriaLabel}
-            className="company-settings-button grid place-items-center rounded-lg border border-[var(--border)] bg-white text-[#606672]"
+            className="company-settings-button grid place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]"
             onClick={() => setSettingsOpen((isOpen) => !isOpen)}
             type="button"
           >

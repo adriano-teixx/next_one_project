@@ -23,7 +23,7 @@ export function DocumentTableRow<TRow extends Record<string, unknown>>({
 }: DocumentTableRowProps<TRow>) {
   return (
     <tr
-      className="documents-data-row h-[64px] border-t border-[var(--border-soft)] bg-white transition-colors"
+      className="documents-data-row h-[64px] border-t border-[var(--border-soft)] bg-[var(--surface)] transition-colors"
       data-row-id={rowId}
       data-selected={selected ? "true" : undefined}
       style={
@@ -35,7 +35,7 @@ export function DocumentTableRow<TRow extends Record<string, unknown>>({
       <td className="px-3">
         <button
           aria-checked={selected}
-          className="documents-row-check grid place-items-center rounded-md border border-[var(--border)] bg-white"
+          className="documents-row-check grid place-items-center rounded-md border border-[var(--border)] bg-[var(--surface)]"
           onClick={onToggleSelection}
           role="checkbox"
           type="button"

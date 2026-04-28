@@ -57,7 +57,7 @@ export function DocumentSearchControls({
         />
       </div>
       <button
-        className="documents-filter-button flex h-[54px] shrink-0 items-center gap-3 rounded-md border border-[var(--border)] bg-[#f7f7f9] px-5 text-[20px] font-bold text-[#555b68]"
+        className="documents-filter-button flex h-[54px] shrink-0 items-center gap-3 rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-5 text-[20px] font-bold text-[var(--muted)]"
         onClick={onOpenFilters}
         type="button"
       >

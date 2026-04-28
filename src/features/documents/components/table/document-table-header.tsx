@@ -12,11 +12,11 @@ export function DocumentTableHeader<TRow>({
 }: DocumentTableHeaderProps<TRow>) {
   return (
     <thead>
-      <tr className="h-[68px] bg-[#f7f7f9] text-[18px] font-bold text-[#515765]">
+      <tr className="h-[68px] bg-[var(--surface-muted)] text-[18px] font-bold text-[var(--muted-strong)]">
         <th className="px-3" style={{ width: checkboxColumnWidth }}>
           <button
             aria-checked={isPartiallySelected ? "mixed" : Boolean(isAllSelected)}
-            className="documents-row-check grid place-items-center rounded-md border border-[var(--border)] bg-white"
+            className="documents-row-check grid place-items-center rounded-md border border-[var(--border)] bg-[var(--surface)]"
             data-partial={isPartiallySelected ? "true" : undefined}
             data-selected={isAllSelected ? "true" : undefined}
             onClick={onToggleSelectAll}
