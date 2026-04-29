@@ -1,5 +1,6 @@
 import type { Route } from "next";
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -26,16 +27,18 @@ export function PageBreadcrumb({ items }: PageBreadcrumbProps) {
           const isLastItem = index === items.length - 1;
 
           return (
-            <BreadcrumbItem key={`${item.label}-${index}`}>
-              {item.href && !isLastItem ? (
-                <BreadcrumbLink asChild>
-                  <Link href={item.href}>{item.label}</Link>
-                </BreadcrumbLink>
-              ) : (
-                <BreadcrumbPage>{item.label}</BreadcrumbPage>
-              )}
+            <Fragment key={`${item.label}-${index}`}>
+              <BreadcrumbItem>
+                {item.href && !isLastItem ? (
+                  <BreadcrumbLink asChild>
+                    <Link href={item.href}>{item.label}</Link>
+                  </BreadcrumbLink>
+                ) : (
+                  <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                )}
+              </BreadcrumbItem>
               {!isLastItem ? <BreadcrumbSeparator /> : null}
-            </BreadcrumbItem>
+            </Fragment>
           );
         })}
       </BreadcrumbList>

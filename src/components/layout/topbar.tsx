@@ -20,7 +20,7 @@ export function Topbar() {
   const themeLabel = isDark ? "Ativar tema claro" : "Ativar tema escuro";
 
   return (
-    <header className="app-topbar fixed inset-x-0 top-0 z-30 flex items-center border-b border-[var(--border)] bg-[var(--topbar-bg)] px-7">
+    <header className="app-topbar fixed inset-x-0 top-0 z-30 flex items-center bg-[var(--background)] px-7">
       <a aria-label="Qive" className="qive-logo" href="#">
         <span className="qive-logo-mark" />
         ive
