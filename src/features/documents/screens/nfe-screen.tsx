@@ -83,7 +83,7 @@ export function NfeScreen() {
             title={documentsPageData.title}
           />
 
-          <CompanySelector data={companySelectorData} />
+          <CompanySelector data={companySelectorData} showPicker={false} />
 
           <section className="documents-panel mt-6 overflow-hidden rounded-lg border border-[var(--border)]">
             <DocumentsToolbar

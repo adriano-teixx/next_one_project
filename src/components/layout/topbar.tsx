@@ -3,13 +3,19 @@
 import { Bell, CircleHelp, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
+import type { AppLayoutConfig } from "@/config/app-layout";
+import { TopbarCompanySelector } from "./topbar-company-selector";
 
 function subscribeToHydration(callback: () => void) {
   queueMicrotask(callback);
   return () => {};
 }
 
-export function Topbar() {
+type TopbarProps = {
+  data: AppLayoutConfig["topbar"];
+};
+
+export function Topbar({ data }: TopbarProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const isHydrated = useSyncExternalStore(
     subscribeToHydration,
@@ -26,7 +32,9 @@ export function Topbar() {
         ive
       </a>
 
-      <div className="ml-auto flex items-center gap-4">
+      <TopbarCompanySelector data={data.companySelector} />
+
+      <div className="topbar-actions flex items-center gap-4">
         <button
           aria-label={themeLabel}
           className="topbar-icon-button text-[var(--topbar-icon)]"
@@ -48,7 +56,7 @@ export function Topbar() {
           <CircleHelp size={25} strokeWidth={1.9} />
         </button>
         <button className="topbar-profile-button" type="button">
-          TT
+          {data.userInitials}
         </button>
       </div>
     </header>

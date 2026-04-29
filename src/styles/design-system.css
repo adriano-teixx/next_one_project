@@ -228,6 +228,263 @@
   transition: background-color 140ms ease;
 }
 
+.topbar-company-selector {
+  position: relative;
+  width: min(520px, 32vw);
+  margin-left: auto;
+  margin-right: 28px;
+}
+
+.topbar-actions {
+  flex: 0 0 auto;
+}
+
+.topbar-company-trigger {
+  display: flex;
+  width: 100%;
+  height: 42px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 0 14px;
+  color: var(--muted-strong);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.topbar-company-trigger:hover {
+  background: var(--surface-muted);
+}
+
+.topbar-company-pin {
+  flex: 0 0 auto;
+  color: var(--success-badge);
+}
+
+.topbar-company-trigger-text {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.topbar-company-trigger-text strong,
+.topbar-company-trigger-text span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-company-trigger-text strong {
+  flex: 0 0 auto;
+  color: var(--foreground);
+  font-weight: 800;
+}
+
+.topbar-company-trigger-text span:nth-child(2) {
+  flex: 0 0 auto;
+}
+
+.topbar-company-count {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--surface-control);
+  padding: 3px 8px;
+  color: var(--link);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.topbar-company-chevron {
+  flex: 0 0 auto;
+  color: var(--success-badge);
+  transition: transform 160ms ease;
+}
+
+.topbar-company-chevron[data-open="true"] {
+  transform: rotate(180deg);
+}
+
+.topbar-company-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  z-index: 60;
+  display: grid;
+  width: min(620px, calc(100vw - 56px));
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 10px;
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.18);
+}
+
+.topbar-company-search {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-muted);
+  padding: 0 11px;
+  color: var(--muted);
+}
+
+.topbar-company-search input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+}
+
+.topbar-company-search input::placeholder {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.topbar-company-selected {
+  display: grid;
+  gap: 5px;
+}
+
+.topbar-company-chip {
+  display: grid;
+  height: 30px;
+  grid-template-columns: 38px 152px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 7px;
+  background: var(--surface-control);
+  padding: 0 8px 0 12px;
+  color: var(--muted-strong);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.topbar-company-chip strong {
+  color: var(--foreground);
+  font-weight: 800;
+}
+
+.topbar-company-chip-document,
+.topbar-company-chip-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topbar-company-chip-remove {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.topbar-company-chip-remove:hover {
+  background: var(--surface-control-hover);
+  color: var(--foreground);
+}
+
+.topbar-company-more {
+  padding: 4px 6px 1px;
+  color: var(--link);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.topbar-company-empty-selection,
+.topbar-company-empty-result {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.topbar-company-empty-selection {
+  padding: 5px 6px;
+}
+
+.topbar-company-options {
+  display: grid;
+  max-height: 220px;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
+}
+
+.topbar-company-option {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  border-radius: 7px;
+  padding: 8px;
+  color: var(--muted-strong);
+  text-align: left;
+}
+
+.topbar-company-option:hover,
+.topbar-company-option[aria-selected="true"] {
+  background: var(--surface-muted);
+}
+
+.topbar-company-checkbox {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  color: #ffffff;
+}
+
+.topbar-company-checkbox[data-checked="true"] {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.topbar-company-option-text {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 154px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.topbar-company-option-text strong {
+  color: var(--foreground);
+  font-weight: 800;
+}
+
+.topbar-company-option-text span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topbar-company-empty-result {
+  padding: 10px 8px 4px;
+}
+
 .topbar-icon-button:hover,
 .topbar-profile-button:hover {
   background: var(--surface-control-hover);
@@ -296,6 +553,71 @@
 
   .app-topbar {
     padding-inline: 28px;
+  }
+
+  .topbar-company-selector {
+    width: min(420px, 34vw);
+    margin-right: 22px;
+  }
+
+  .topbar-company-trigger {
+    height: 32px;
+    gap: 8px;
+    border-radius: 8px;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+
+  .topbar-company-pin,
+  .topbar-company-chevron {
+    width: 15px;
+    height: 15px;
+  }
+
+  .topbar-company-count {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .topbar-company-menu {
+    width: min(500px, calc(100vw - 56px));
+    gap: 5px;
+    padding: 8px;
+  }
+
+  .topbar-company-search {
+    height: 30px;
+    border-radius: 7px;
+  }
+
+  .topbar-company-search input {
+    font-size: 11px;
+  }
+
+  .topbar-company-chip {
+    height: 26px;
+    grid-template-columns: 30px 128px minmax(0, 1fr) 22px;
+    gap: 7px;
+    font-size: 11px;
+  }
+
+  .topbar-company-more {
+    font-size: 11px;
+  }
+
+  .topbar-company-options {
+    max-height: 180px;
+  }
+
+  .topbar-company-option {
+    gap: 8px;
+    padding: 6px;
+  }
+
+  .topbar-company-option-text {
+    grid-template-columns: 28px 124px minmax(0, 1fr);
+    gap: 6px;
+    font-size: 11px;
   }
 
   .app-topbar .topbar-icon-button {

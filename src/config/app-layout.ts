@@ -14,6 +14,9 @@ export type AppLayoutConfig = {
   };
   topbar: {
     activeNavItem: string;
+    companySelector: {
+      endpoint: string;
+    };
     navItems: string[];
     notificationCount: number;
     promo: string;
@@ -60,6 +63,9 @@ export const appLayoutConfig: AppLayoutConfig = {
   },
   topbar: {
     activeNavItem: "Geral",
+    companySelector: {
+      endpoint: "/api/filiais",
+    },
     navItems: ["Geral", "Fiscal", "Compras"],
     notificationCount: 30,
     promo: "Aproveite: certificado por R$109,00!",

@@ -180,6 +180,10 @@ body {
     padding-inline: max(16px, var(--safe-left)) max(16px, var(--safe-right));
   }
 
+  .topbar-company-selector {
+    display: none;
+  }
+
   .topbar-icon-button,
   .topbar-profile-button {
     width: 32px;
@@ -277,6 +281,14 @@ body {
   .app-topbar {
     gap: 12px;
     padding-inline: max(12px, var(--safe-left)) max(12px, var(--safe-right));
+  }
+
+  .topbar-company-selector {
+    display: none;
+  }
+
+  .topbar-actions {
+    margin-left: auto;
   }
 
   .qive-logo {
@@ -413,9 +425,35 @@ body {
     min-width: 0;
   }
 
+  .company-selector[data-picker="false"] {
+    display: flex;
+    align-items: center;
+  }
+
+  .company-selector[data-picker="false"] .company-selector-main {
+    display: flex;
+    grid-column: auto;
+  }
+
+  .company-selector[data-picker="false"] .company-primary-actions {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+  }
+
   .company-picker {
     width: 100%;
     min-height: 88px;
+  }
+
+  .company-picker-chip {
+    grid-template-columns: 30px 126px minmax(0, 1fr) 18px;
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .company-picker-more {
+    font-size: 11px;
   }
 
   .company-due-card {
