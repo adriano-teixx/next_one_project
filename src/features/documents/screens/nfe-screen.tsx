@@ -11,6 +11,7 @@ import { DocumentsFooter } from "../components/feedback/documents-footer";
 import { FilterDrawer } from "../components/filters/filter-drawer";
 import { DocumentPageTitle } from "../components/page/document-page-title";
 import { DocumentsTable } from "../components/table/documents-table";
+import { DocumentsTableSkeleton } from "../components/table/documents-table-skeleton";
 import { DocumentsToolbar } from "../components/toolbar/documents-toolbar";
 import {
   columnsModalData,
@@ -40,7 +41,7 @@ export function NfeScreen() {
   const activePurpose = getPurposeByTab(activeTab);
   const documentsQuery = useDocumentsQuery({
     page: 1,
-    pageSize: 25,
+    pageSize: 10,
     purpose: activePurpose,
   });
   const documents = documentsQuery.data?.items ?? [];
@@ -108,23 +109,27 @@ export function NfeScreen() {
               totalDocuments={totalDocuments}
               totalValue={totalValue}
             />
-            <DocumentsTable
-              columns={nfeTableColumns}
-              getRowId={(row) => row.number}
-              initialSort={nfeInitialTableSort}
-              onSelectionChange={setSelectedDocumentIds}
-              onRowAction={handleRowAction}
-              rowActions={nfeRowActions}
-              rows={documents}
-              selectedRowIds={selectedDocumentIds}
-            />
+            {documentsQuery.isLoading ? (
+              <DocumentsTableSkeleton columns={nfeTableColumns} rows={10} />
+            ) : (
+              <DocumentsTable
+                columns={nfeTableColumns}
+                getRowId={(row) => row.number}
+                initialSort={nfeInitialTableSort}
+                onSelectionChange={setSelectedDocumentIds}
+                onRowAction={handleRowAction}
+                rowActions={nfeRowActions}
+                rows={documents}
+                selectedRowIds={selectedDocumentIds}
+              />
+            )}
             <DocumentsEmptyHint data={documentsEmptyHintData} />
           </section>
 
           <DocumentsFooter
             data={{
               ...documentsFooterCopy,
-              pageSize: documentsQuery.data?.pageSize ?? 25,
+              pageSize: documentsQuery.data?.pageSize ?? 10,
               rangeEnd: documents.length,
               rangeStart: 1,
               total: totalDocuments,

@@ -53,7 +53,7 @@ const phones = [
 
 const states = ["PR", "GO", "MT", "SP", "RS", "BA", "MG", "PE", "CE", "SC"];
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const page = toPositiveInteger(searchParams.get("page"), 1);
   const pageSize = Math.min(toPositiveInteger(searchParams.get("pageSize"), 25), 100);
@@ -68,6 +68,8 @@ export function GET(request: NextRequest) {
       .reduce((total, value) => total + value, 0),
   );
 
+  await wait(260);
+
   return NextResponse.json<DocumentListResponse>({
     items,
     page,
@@ -75,6 +77,10 @@ export function GET(request: NextRequest) {
     total,
     totalValue,
   });
+}
+
+function wait(milliseconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 function createDocument(index: number, purpose: DocumentPurpose): DocumentRow {

@@ -48,6 +48,33 @@
   font-weight: 700;
 }
 
+.ui-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--muted) 34%, var(--surface-control));
+}
+
+.ui-skeleton::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  transform: translateX(-100%);
+  animation: skeleton-shimmer 1.25s ease-in-out infinite;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--surface) 56%, transparent),
+    transparent
+  );
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .ui-select-trigger {
   display: inline-flex;
   align-items: center;
