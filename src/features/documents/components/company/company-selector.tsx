@@ -76,8 +76,8 @@ export function CompanySelector({ data }: CompanySelectorProps) {
   }
 
   return (
-    <div className="flex items-start justify-between gap-6">
-      <div className="flex items-start gap-6">
+    <div className="company-selector flex items-start justify-between gap-6">
+      <div className="company-selector-main flex items-start gap-6">
         <div
           className="company-picker relative flex items-start rounded-lg border border-[var(--border)] bg-[var(--surface)] px-2 py-2 shadow-sm"
           data-open={isCompanyMenuOpen ? "true" : undefined}

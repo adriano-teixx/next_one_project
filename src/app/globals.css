@@ -285,9 +285,3 @@ a {
 .dark .text-\[\#2143e6\] {
   color: var(--link);
 }
-
-@media (max-width: 900px) {
-  body {
-    min-width: 900px;
-  }
-}

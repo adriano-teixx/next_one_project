@@ -54,7 +54,7 @@ export function DocumentPeriodSummary({
           </div>
         ) : null}
       </div>
-      <p className="ml-auto">
+      <p className="documents-period-total ml-auto">
         {totalPrefix} <strong>{totalDocuments.toLocaleString("pt-BR")}</strong>{" "}
         {totalSuffix}: <strong>{totalValue}</strong>
       </p>

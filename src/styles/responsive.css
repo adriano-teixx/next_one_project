@@ -1,0 +1,589 @@
+/*
+  Central responsive layer.
+  Keep viewport/device-specific behavior here so component styles stay structural.
+*/
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --page-max-width: none;
+}
+
+html {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 0;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+.app-topbar {
+  height: calc(var(--topbar-height) + var(--safe-top));
+  padding-top: var(--safe-top);
+  padding-right: max(1.75rem, var(--safe-right));
+  padding-left: max(1.75rem, var(--safe-left));
+}
+
+.app-shell-main {
+  padding-top: calc(var(--topbar-height) + var(--safe-top));
+}
+
+.app-sidebar {
+  top: calc(var(--topbar-height) + var(--safe-top));
+  height: calc(100svh - var(--topbar-height) - var(--safe-top));
+}
+
+.app-content {
+  min-height: calc(100svh - var(--topbar-height) - var(--safe-top));
+  padding-right: max(var(--content-gutter-right), var(--safe-right));
+  padding-left: max(var(--content-gutter-left), var(--safe-left));
+}
+
+.app-sidebar-panel,
+.documents-table,
+.company-picker-menu,
+.documents-search-kind-menu,
+.documents-period-menu,
+.documents-toolbar-menu {
+  -webkit-overflow-scrolling: touch;
+}
+
+.documents-panel,
+.documents-table,
+.documents-search-combo,
+.company-picker {
+  min-width: 0;
+}
+
+.documents-table {
+  overscroll-behavior-x: contain;
+}
+
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
+
+  .app-topbar {
+    transform: translateZ(0);
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1801px) {
+  :root {
+    --topbar-height: 84px;
+    --sidebar-width: 333px;
+    --content-gutter-left: 40px;
+    --content-gutter-right: 57px;
+    --content-top-offset: 32px;
+  }
+}
+
+/* Standard notebooks and small desktop */
+@media (min-width: 1280px) and (max-width: 1800px) {
+  :root {
+    --topbar-height: 60px;
+    --sidebar-width: 240px;
+    --content-gutter-left: 28px;
+    --content-gutter-right: 40px;
+    --content-top-offset: 24px;
+  }
+}
+
+/* Tablet landscape / small notebook */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --topbar-height: 58px;
+    --sidebar-width: 220px;
+    --content-gutter-left: 22px;
+    --content-gutter-right: 22px;
+    --content-top-offset: 22px;
+  }
+
+  .app-topbar {
+    padding-inline: max(18px, var(--safe-left)) max(18px, var(--safe-right));
+  }
+
+  .qive-logo {
+    font-size: 23px;
+  }
+
+  .qive-logo-mark {
+    width: 21px;
+    height: 21px;
+    border-width: 4px;
+  }
+
+  .qive-logo-mark::after {
+    right: -5px;
+    bottom: -3px;
+    width: 11px;
+    height: 5px;
+  }
+
+  .app-sidebar-panel {
+    padding: 24px 14px 18px;
+  }
+
+  .app-sidebar-content {
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .app-sidebar-link {
+    height: 32px;
+    gap: 10px;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+
+  .app-sidebar-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .company-picker {
+    width: min(48vw, 500px);
+  }
+
+  .documents-search-row {
+    flex-wrap: wrap;
+  }
+
+  .documents-filter-button {
+    width: auto;
+  }
+}
+
+/* Tablet portrait */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --topbar-height: 58px;
+    --sidebar-width: 196px;
+    --content-gutter-left: 18px;
+    --content-gutter-right: 18px;
+    --content-top-offset: 20px;
+  }
+
+  .app-topbar {
+    padding-inline: max(16px, var(--safe-left)) max(16px, var(--safe-right));
+  }
+
+  .topbar-icon-button,
+  .topbar-profile-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .topbar-icon-button svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .topbar-status-dot {
+    top: 0;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    font-size: 8px;
+  }
+
+  .app-sidebar-panel {
+    padding: 20px 12px 16px;
+  }
+
+  .app-sidebar-content {
+    gap: 18px;
+    min-width: 0;
+  }
+
+  .app-sidebar-section-title {
+    padding-inline: 10px;
+    font-size: 9px;
+  }
+
+  .app-sidebar-link {
+    height: 32px;
+    gap: 9px;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+
+  .app-sidebar-help {
+    grid-template-columns: 16px minmax(0, 1fr);
+    min-height: 48px;
+    padding: 9px 10px;
+  }
+
+  .app-sidebar-help > svg:last-child {
+    display: none;
+  }
+
+  .company-picker {
+    width: min(100%, 430px);
+    min-height: 92px;
+  }
+
+  .app-content > div > .flex,
+  .company-picker + .company-due-card {
+    min-width: 0;
+  }
+
+  .documents-search-row,
+  .documents-period-bar,
+  .documents-actions {
+    flex-wrap: wrap;
+  }
+
+  .documents-search-combo {
+    flex-basis: 100%;
+  }
+
+  .documents-filter-button {
+    height: 40px;
+  }
+}
+
+/* Phones, including iOS Safari dynamic viewport */
+@media (max-width: 767px) {
+  :root {
+    --topbar-height: 56px;
+    --sidebar-width: 0px;
+    --content-gutter-left: 12px;
+    --content-gutter-right: 12px;
+    --content-top-offset: 16px;
+  }
+
+  body {
+    min-width: 0;
+  }
+
+  .app-shell-grid {
+    display: block;
+    padding-top: calc(var(--topbar-height) + var(--safe-top));
+  }
+
+  .app-topbar {
+    gap: 12px;
+    padding-inline: max(12px, var(--safe-left)) max(12px, var(--safe-right));
+  }
+
+  .qive-logo {
+    font-size: 24px;
+  }
+
+  .qive-logo-mark {
+    width: 22px;
+    height: 22px;
+    border-width: 4px;
+  }
+
+  .qive-logo-mark::after {
+    right: -5px;
+    bottom: -3px;
+    width: 11px;
+    height: 5px;
+  }
+
+  .topbar-icon-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .topbar-icon-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .topbar-profile-button {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .topbar-status-dot {
+    top: 0;
+    right: -1px;
+    width: 14px;
+    height: 14px;
+    font-size: 8px;
+  }
+
+  .app-sidebar {
+    position: sticky;
+    top: calc(var(--topbar-height) + var(--safe-top));
+    z-index: 20;
+    height: auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .app-sidebar-panel {
+    display: block;
+    height: auto;
+    max-height: 58px;
+    padding: 10px max(12px, var(--safe-right)) 10px max(12px, var(--safe-left));
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .app-sidebar-content {
+    display: inline-flex;
+    min-width: max-content;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .app-sidebar-section-title,
+  .app-sidebar-help {
+    display: none;
+  }
+
+  .app-sidebar-section-list {
+    display: flex;
+    gap: 8px;
+  }
+
+  .app-sidebar-section-list > :not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .app-sidebar-link {
+    height: 36px;
+    gap: 8px;
+    border-radius: 999px;
+    padding-inline: 12px;
+    font-size: 13px;
+  }
+
+  .app-sidebar-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .app-shell-main {
+    padding-top: 0;
+  }
+
+  .app-content {
+    overflow-x: hidden;
+    padding:
+      var(--content-top-offset) max(var(--content-gutter-right), var(--safe-right))
+      max(16px, var(--safe-bottom)) max(var(--content-gutter-left), var(--safe-left));
+  }
+
+  .app-content h1 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .company-selector {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .company-selector-main {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .company-picker {
+    width: 100%;
+    min-height: 88px;
+  }
+
+  .company-due-card {
+    width: max-content;
+    min-width: 128px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .company-settings-button {
+    width: 44px;
+    height: 40px;
+  }
+
+  .company-primary-actions {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    margin-top: -50px;
+  }
+
+  .company-settings-menu {
+    right: 0;
+    width: min(224px, calc(100vw - 24px));
+  }
+
+  .documents-panel {
+    margin-top: 14px;
+    overflow: hidden;
+  }
+
+  .documents-tabs {
+    overflow-x: auto;
+    align-items: center;
+    height: 44px;
+    gap: 22px;
+    padding-inline: 12px;
+    font-size: 14px;
+    scrollbar-width: none;
+  }
+
+  .documents-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .documents-controls {
+    padding: 12px;
+  }
+
+  .documents-search-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .documents-search-combo {
+    height: auto;
+    min-height: 40px;
+    flex-wrap: wrap;
+  }
+
+  .documents-search-kind-wrap {
+    width: 100%;
+  }
+
+  .documents-search-kind {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .documents-search-input {
+    height: 40px;
+    flex-basis: 100%;
+  }
+
+  .documents-filter-button {
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+  }
+
+  .documents-period-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 72px;
+    gap: 8px;
+    padding-block: 12px;
+  }
+
+  .documents-period-menu-wrap {
+    min-width: 0;
+  }
+
+  .documents-period-trigger {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) auto 16px;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .documents-period-trigger span {
+    margin-left: 0;
+    justify-self: end;
+    white-space: nowrap;
+  }
+
+  .documents-period-trigger svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .documents-period-total {
+    margin-left: 0;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  .documents-search-input input::placeholder {
+    color: var(--muted);
+    opacity: 0.85;
+  }
+
+  .documents-actions {
+    display: flex;
+    height: auto;
+    min-height: 48px;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-block: 10px;
+    scrollbar-width: none;
+  }
+
+  .documents-actions::-webkit-scrollbar {
+    display: none;
+  }
+
+  .documents-select-all {
+    height: 34px;
+    max-width: 210px;
+  }
+
+  .documents-toolbar-action-wrap {
+    flex: 0 0 auto;
+  }
+
+  .documents-table {
+    max-width: calc(100vw - var(--content-gutter-left) - var(--content-gutter-right));
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .documents-table table {
+    min-width: 1180px;
+  }
+}
+
+/* Narrow phones */
+@media (max-width: 390px) {
+  .topbar-icon-button:not(:first-of-type) {
+    width: 30px;
+  }
+
+  .app-sidebar-panel {
+    max-height: 56px;
+  }
+
+  .app-sidebar-link {
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+}

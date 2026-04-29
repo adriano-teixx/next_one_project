@@ -3,6 +3,7 @@ import { AppProviders } from "@/components/providers/app-providers";
 import "./globals.css";
 import "@/styles/design-system.css";
 import "@/styles/features/documents.css";
+import "@/styles/responsive.css";
 
 export const metadata: Metadata = {
   title: "Projeto Sem Nome",

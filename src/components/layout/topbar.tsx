@@ -2,10 +2,22 @@
 
 import { Bell, CircleHelp, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+
+function subscribeToHydration(callback: () => void) {
+  queueMicrotask(callback);
+  return () => {};
+}
 
 export function Topbar() {
   const { resolvedTheme, setTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  );
+  const isDark = isHydrated && resolvedTheme === "dark";
+  const themeLabel = isDark ? "Ativar tema claro" : "Ativar tema escuro";
 
   return (
     <header className="app-topbar fixed inset-x-0 top-0 z-30 flex items-center border-b border-[var(--border)] bg-[var(--topbar-bg)] px-7">
@@ -16,12 +28,13 @@ export function Topbar() {
 
       <div className="ml-auto flex items-center gap-4">
         <button
-          aria-label={isDark ? "Ativar tema claro" : "Ativar tema escuro"}
+          aria-label={themeLabel}
           className="topbar-icon-button text-[var(--topbar-icon)]"
           onClick={() => setTheme(isDark ? "light" : "dark")}
           type="button"
+          suppressHydrationWarning
         >
-          {isDark ? (
+          {isHydrated && isDark ? (
             <Sun size={25} strokeWidth={1.9} />
           ) : (
             <Moon size={25} strokeWidth={1.9} />
