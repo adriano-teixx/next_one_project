@@ -16,6 +16,7 @@ type DocumentsQueryState = {
 export function useDocumentsQuery(params: DocumentListParams = {}) {
   const page = params.page ?? 1;
   const pageSize = params.pageSize ?? 25;
+  const purpose = params.purpose ?? "recebidas";
   const [state, setState] = useState<DocumentsQueryState>({
     data: null,
     error: null,
@@ -33,7 +34,7 @@ export function useDocumentsQuery(params: DocumentListParams = {}) {
       }));
 
       try {
-        const data = await getDocuments({ page, pageSize });
+        const data = await getDocuments({ page, pageSize, purpose });
 
         if (!isCurrent) {
           return;
@@ -62,7 +63,7 @@ export function useDocumentsQuery(params: DocumentListParams = {}) {
     return () => {
       isCurrent = false;
     };
-  }, [page, pageSize]);
+  }, [page, pageSize, purpose]);
 
   return state;
 }

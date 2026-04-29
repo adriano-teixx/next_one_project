@@ -7,9 +7,11 @@ import { DocumentSearchControls } from "./document-search-controls";
 import type { DocumentsToolbarData } from "../../types/document-page";
 
 type DocumentsToolbarProps = {
+  activeTab: string;
   data: DocumentsToolbarData;
   onOpenColumns: () => void;
   onOpenFilters: () => void;
+  onTabChange: (tab: string) => void;
   onToggleSelectAll: () => void;
   selectedCount: number;
   totalDocuments: number;
@@ -17,9 +19,11 @@ type DocumentsToolbarProps = {
 };
 
 export function DocumentsToolbar({
+  activeTab,
   data,
   onOpenColumns,
   onOpenFilters,
+  onTabChange,
   onToggleSelectAll,
   selectedCount,
   totalDocuments,
@@ -27,7 +31,7 @@ export function DocumentsToolbar({
 }: DocumentsToolbarProps) {
   return (
     <>
-      <DocumentTabs activeTab={data.tabs[0]} tabs={data.tabs} />
+      <DocumentTabs activeTab={activeTab} onTabChange={onTabChange} tabs={data.tabs} />
 
       <div className="documents-controls border-t border-[var(--border)] bg-[var(--surface)] px-6 pb-0 pt-5">
         <DocumentSearchControls

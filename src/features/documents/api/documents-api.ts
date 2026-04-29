@@ -1,26 +1,22 @@
-import type {
-  DocumentListParams,
-  DocumentListResponse,
-} from "../types/document";
-import { mockDocuments } from "./mocks/document-list-fixtures";
+import type { DocumentListParams, DocumentListResponse } from "../types/document";
 
 export async function getDocuments(
   params: DocumentListParams = {},
 ): Promise<DocumentListResponse> {
   const page = params.page ?? 1;
   const pageSize = params.pageSize ?? 25;
+  const purpose = params.purpose ?? "recebidas";
+  const searchParams = new URLSearchParams({
+    page: String(page),
+    pageSize: String(pageSize),
+    purpose,
+  });
 
-  await wait(120);
+  const response = await fetch(`/api/notas?${searchParams.toString()}`);
 
-  return {
-    items: mockDocuments.slice((page - 1) * pageSize, page * pageSize),
-    page,
-    pageSize,
-    total: 2944,
-    totalValue: "R$ 1.321.859.363,26",
-  };
-}
+  if (!response.ok) {
+    throw new Error("Não foi possível carregar as notas");
+  }
 
-function wait(milliseconds: number) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  return (await response.json()) as DocumentListResponse;
 }

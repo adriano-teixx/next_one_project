@@ -25,18 +25,24 @@ import {
   nfeTableColumns,
 } from "../adapters/nfe-table-adapter";
 import type { DataTableRowAction } from "../components/table/document-table-types";
-import type { DocumentRow } from "../types/document";
+import type { DocumentPurpose, DocumentRow } from "../types/document";
 import { useDocumentsQuery } from "../hooks/use-documents-query";
 import { useNfePageData } from "../hooks/use-nfe-page-data";
 
 type ActiveOverlay = "columns" | "filters" | "document" | null;
 
 export function NfeScreen() {
+  const [activeTab, setActiveTab] = useState(documentsToolbarData.tabs[0]);
   const [activeOverlay, setActiveOverlay] = useState<ActiveOverlay>(null);
   const [selectedDocumentIds, setSelectedDocumentIds] = useState<string[]>([]);
   const { companySelectorData, documentPreviewData, filterDrawerData } =
     useNfePageData();
-  const documentsQuery = useDocumentsQuery({ page: 1, pageSize: 25 });
+  const activePurpose = getPurposeByTab(activeTab);
+  const documentsQuery = useDocumentsQuery({
+    page: 1,
+    pageSize: 25,
+    purpose: activePurpose,
+  });
   const documents = documentsQuery.data?.items ?? [];
   const totalDocuments = documentsQuery.data?.total ?? 0;
   const totalValue = documentsQuery.data?.totalValue ?? "R$ 0,00";
@@ -70,6 +76,11 @@ export function NfeScreen() {
     });
   }
 
+  function handleTabChange(tab: string) {
+    setActiveTab(tab);
+    setSelectedDocumentIds([]);
+  }
+
   return (
     <AppShell>
       <main className="app-content overflow-hidden">
@@ -87,9 +98,11 @@ export function NfeScreen() {
 
           <section className="documents-panel mt-6 overflow-hidden rounded-lg border border-[var(--border)]">
             <DocumentsToolbar
+              activeTab={activeTab}
               data={documentsToolbarData}
               onOpenColumns={() => setActiveOverlay("columns")}
               onOpenFilters={() => setActiveOverlay("filters")}
+              onTabChange={handleTabChange}
               onToggleSelectAll={toggleSelectAllVisibleDocuments}
               selectedCount={selectedDocumentIds.length}
               totalDocuments={totalDocuments}
@@ -140,4 +153,15 @@ export function NfeScreen() {
       ) : null}
     </AppShell>
   );
+}
+
+function getPurposeByTab(tab: string): DocumentPurpose {
+  const purposeByTab: Record<string, DocumentPurpose> = {
+    Citadas: "citadas",
+    Emitidas: "emitidas",
+    Recebidas: "recebidas",
+    Transporte: "transporte",
+  };
+
+  return purposeByTab[tab] ?? "recebidas";
 }

@@ -1,5 +1,7 @@
 export type DocumentStatus = "AUTORIZADAS";
 
+export type DocumentPurpose = "citadas" | "emitidas" | "recebidas" | "transporte";
+
 export type DocumentRow = {
   accessKey: string;
   annotations: string;
@@ -36,4 +38,5 @@ export type DocumentListResponse = {
 export type DocumentListParams = {
   page?: number;
   pageSize?: number;
+  purpose?: DocumentPurpose;
 };
