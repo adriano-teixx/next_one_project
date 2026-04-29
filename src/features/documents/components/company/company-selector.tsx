@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronDown, ChevronUp, FileText, Settings, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Settings, X } from "lucide-react";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { CompanySelectorData } from "../../types/document-page";
 
@@ -220,15 +220,16 @@ export function CompanySelector({ data, showPicker = true }: CompanySelectorProp
           </div>
         ) : null}
 
-        <a
-          className="company-due-card flex items-center rounded-lg bg-[var(--warning-surface)] leading-tight text-[var(--muted)]"
-          href={data.billingNotice.actionHref}
-        >
-          <FileText className="shrink-0 text-[var(--warning-icon)]" size={26} />
-          <span className="company-due-card-link shrink-0 font-bold">
-            {data.billingNotice.actionLabel}
-          </span>
-        </a>
+        {showPicker ? (
+          <a
+            className="company-due-card flex items-center rounded-lg bg-[var(--warning-surface)] leading-tight text-[var(--muted)]"
+            href={data.billingNotice.actionHref}
+          >
+            <span className="company-due-card-link shrink-0 font-bold">
+              {data.billingNotice.actionLabel}
+            </span>
+          </a>
+        ) : null}
       </div>
 
       <div className="company-primary-actions flex items-center gap-6">
