@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AppShell } from "@/components/layout/app-shell";
+import { AppRoutes } from "@/config/app-routes";
 import { ColumnsModal } from "../components/columns/columns-modal";
 import { CompanySelector } from "../components/company/company-selector";
 import { DocumentPreviewModal } from "../components/document-preview-modal";
@@ -73,7 +74,14 @@ export function NfeScreen() {
     <AppShell>
       <main className="app-content overflow-hidden">
         <div className="mx-auto w-full max-w-none">
-          <DocumentPageTitle title={documentsPageData.title} />
+          <DocumentPageTitle
+            breadcrumbItems={[
+              { href: AppRoutes.home, label: "Home" },
+              { label: "Documentos" },
+              { label: "NF-e" },
+            ]}
+            title={documentsPageData.title}
+          />
 
           <CompanySelector data={companySelectorData} />
 

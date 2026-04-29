@@ -95,6 +95,16 @@
   color: var(--muted);
 }
 
+.page-heading {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 34px;
+}
+
+.page-breadcrumb {
+  font-size: 14px;
+}
+
 .app-sidebar-panel {
   display: flex;
   height: calc(100dvh - var(--topbar-height));
@@ -367,10 +377,18 @@
     font-size: 9px;
   }
 
+  .page-heading {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
   .app-content h1 {
-    margin-bottom: 32px;
     font-size: 19px;
     line-height: 24px;
+  }
+
+  .page-breadcrumb {
+    font-size: 11px;
   }
 
   .help-widget {

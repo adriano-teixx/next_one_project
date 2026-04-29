@@ -385,9 +385,17 @@ body {
   }
 
   .app-content h1 {
-    margin-bottom: 20px;
     font-size: 20px;
     line-height: 1.25;
+  }
+
+  .page-heading {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .page-breadcrumb {
+    font-size: 12px;
   }
 
   .company-selector {

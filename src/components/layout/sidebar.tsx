@@ -13,7 +13,11 @@ import {
   RotateCw,
   Search,
 } from "lucide-react";
+import type { Route } from "next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { AppLayoutConfig } from "@/config/app-layout";
+import { AppRoutes, SidebarItemRoutes } from "@/config/app-routes";
 import { cn } from "@/lib/utils/cn";
 
 type SidebarProps = {
@@ -39,6 +43,8 @@ const itemIconMap: Record<string, LucideIcon> = {
 };
 
 export function Sidebar({ data }: SidebarProps) {
+  const pathname = usePathname();
+
   return (
     <aside className="app-sidebar bg-[var(--sidebar-bg)]">
       <nav aria-label="Menu principal" className="app-sidebar-panel">
@@ -51,22 +57,24 @@ export function Sidebar({ data }: SidebarProps) {
               <ul className="app-sidebar-section-list">
                 {section.items.map((item) => {
                   const Icon = itemIconMap[item] ?? FileText;
+                  const href = (SidebarItemRoutes[item] ?? AppRoutes.home) as Route;
                   const isActive =
-                    item === data.activeItem &&
-                    section.title === data.activeSection;
+                    href === AppRoutes.home
+                      ? pathname === href
+                      : pathname === href || pathname.startsWith(`${href}/`);
 
                   return (
                     <li key={`${section.title}-${item}`}>
-                      <a
+                      <Link
                         className={cn(
                           "app-sidebar-link",
                           isActive && "app-sidebar-link-active"
                         )}
-                        href="#"
+                        href={href}
                       >
                         <Icon aria-hidden="true" />
                         <span>{item}</span>
-                      </a>
+                      </Link>
                     </li>
                   );
                 })}
@@ -75,14 +83,14 @@ export function Sidebar({ data }: SidebarProps) {
           ))}
         </div>
 
-        <a className="app-sidebar-help" href="#">
+        <Link className="app-sidebar-help" href={AppRoutes.help as Route}>
           <CircleHelp aria-hidden="true" />
           <span>
             <strong>Precisa de ajuda?</strong>
             <small>Acesse nossa central de ajuda</small>
           </span>
           <ChevronRight aria-hidden="true" />
-        </a>
+        </Link>
       </nav>
     </aside>
   );
