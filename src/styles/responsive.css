@@ -600,7 +600,12 @@ body {
 
   .documents-select-all {
     height: 34px;
-    max-width: 210px;
+    max-width: 240px;
+  }
+
+  .documents-select-all-count {
+    min-width: 82px;
+    height: 24px;
   }
 
   .documents-toolbar-action-wrap {

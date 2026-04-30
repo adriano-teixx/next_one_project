@@ -35,16 +35,22 @@ type ActiveOverlay = "columns" | "filters" | "document" | null;
 export function NfeScreen() {
   const [activeTab, setActiveTab] = useState(documentsToolbarData.tabs[0]);
   const [activeOverlay, setActiveOverlay] = useState<ActiveOverlay>(null);
+  const [isAllCurrentPurposeSelected, setAllCurrentPurposeSelected] =
+    useState(false);
   const [selectedDocumentIds, setSelectedDocumentIds] = useState<string[]>([]);
   const { companySelectorData, documentPreviewData, filterDrawerData } =
     useNfePageData();
   const activePurpose = getPurposeByTab(activeTab);
   const documentsQuery = useDocumentsQuery({
     page: 1,
-    pageSize: 10,
+    pageSize: 25,
     purpose: activePurpose,
   });
   const documents = documentsQuery.data?.items ?? [];
+  const visibleDocumentIds = documents.map((document) => document.number);
+  const resolvedSelectedDocumentIds = isAllCurrentPurposeSelected
+    ? visibleDocumentIds
+    : selectedDocumentIds;
   const totalDocuments = documentsQuery.data?.total ?? 0;
   const totalValue = documentsQuery.data?.totalValue ?? "R$ 0,00";
 
@@ -55,30 +61,22 @@ export function NfeScreen() {
     }
   }
 
-  function toggleSelectAllVisibleDocuments() {
-    const visibleDocumentIds = documents.map((document) => document.number);
-    const selectedDocumentIdSet = new Set(selectedDocumentIds);
-    const hasSelectedAllVisibleDocuments = visibleDocumentIds.every((documentId) =>
-      selectedDocumentIdSet.has(documentId),
-    );
-
-    setSelectedDocumentIds((currentSelectedIds) => {
-      const nextSelectedIds = new Set(currentSelectedIds);
-
-      visibleDocumentIds.forEach((documentId) => {
-        if (hasSelectedAllVisibleDocuments) {
-          nextSelectedIds.delete(documentId);
-        } else {
-          nextSelectedIds.add(documentId);
-        }
-      });
-
-      return [...nextSelectedIds];
+  function toggleSelectAllDocuments() {
+    setAllCurrentPurposeSelected((isSelected) => {
+      const nextSelectedState = !isSelected;
+      setSelectedDocumentIds(nextSelectedState ? visibleDocumentIds : []);
+      return nextSelectedState;
     });
+  }
+
+  function handleSelectionChange(nextSelectedDocumentIds: string[]) {
+    setAllCurrentPurposeSelected(false);
+    setSelectedDocumentIds(nextSelectedDocumentIds);
   }
 
   function handleTabChange(tab: string) {
     setActiveTab(tab);
+    setAllCurrentPurposeSelected(false);
     setSelectedDocumentIds([]);
   }
 
@@ -104,23 +102,27 @@ export function NfeScreen() {
               onOpenColumns={() => setActiveOverlay("columns")}
               onOpenFilters={() => setActiveOverlay("filters")}
               onTabChange={handleTabChange}
-              onToggleSelectAll={toggleSelectAllVisibleDocuments}
-              selectedCount={selectedDocumentIds.length}
+              onToggleSelectAll={toggleSelectAllDocuments}
+              selectedCount={
+                isAllCurrentPurposeSelected
+                  ? totalDocuments
+                  : selectedDocumentIds.length
+              }
               totalDocuments={totalDocuments}
               totalValue={totalValue}
             />
             {documentsQuery.isLoading ? (
-              <DocumentsTableSkeleton columns={nfeTableColumns} rows={10} />
+              <DocumentsTableSkeleton columns={nfeTableColumns} rows={25} />
             ) : (
               <DocumentsTable
                 columns={nfeTableColumns}
                 getRowId={(row) => row.number}
                 initialSort={nfeInitialTableSort}
-                onSelectionChange={setSelectedDocumentIds}
+                onSelectionChange={handleSelectionChange}
                 onRowAction={handleRowAction}
                 rowActions={nfeRowActions}
                 rows={documents}
-                selectedRowIds={selectedDocumentIds}
+                selectedRowIds={resolvedSelectedDocumentIds}
               />
             )}
             <DocumentsEmptyHint data={documentsEmptyHintData} />
@@ -129,7 +131,7 @@ export function NfeScreen() {
           <DocumentsFooter
             data={{
               ...documentsFooterCopy,
-              pageSize: documentsQuery.data?.pageSize ?? 10,
+              pageSize: documentsQuery.data?.pageSize ?? 25,
               rangeEnd: documents.length,
               rangeStart: 1,
               total: totalDocuments,

@@ -35,13 +35,13 @@ export function DocumentBulkActions({
   return (
     <div className="documents-actions flex h-[103px] items-end gap-7 overflow-hidden pb-4 text-[20px] font-bold text-[#606672]">
       <button
-        className="documents-select-all flex h-[45px] shrink-0 items-center gap-3 rounded-lg border border-[var(--border)] bg-[#f7f7f9] px-4"
+        className="documents-select-all"
         data-active={resolvedSelectedCount > 0 ? "true" : undefined}
         onClick={onToggleSelectAll}
         type="button"
       >
-        {selectAllLabel}
-        <span className="rounded-full bg-[#e7e9ed] px-3 py-1">
+        <span className="documents-select-all-label">{selectAllLabel}</span>
+        <span className="documents-select-all-count">
           {resolvedSelectedCount} / {totalDocuments.toLocaleString("pt-BR")}
         </span>
       </button>
@@ -73,6 +73,9 @@ function ToolbarActionButton({
   return (
     <div className="documents-toolbar-action-wrap">
       <InlineAction
+        className={
+          action.key === "columns" ? "documents-toolbar-action-columns" : undefined
+        }
         disabled={isDisabled}
         onClick={
           action.key === "columns"

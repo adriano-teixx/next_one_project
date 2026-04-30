@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { DataTableColumn } from "./document-table-types";
 
@@ -38,14 +37,7 @@ export function DocumentsTableSkeleton<TRow>({
             <th aria-label="Selecionar" />
             {columns.map((column) => (
               <th key={column.key}>
-                <Skeleton
-                  className="documents-table-skeleton-heading"
-                  style={
-                    {
-                      "--skeleton-width": `${Math.min(column.width - 32, 170)}px`,
-                    } as CSSProperties
-                  }
-                />
+                <Skeleton className="documents-table-skeleton-heading" />
               </th>
             ))}
           </tr>
@@ -53,23 +45,10 @@ export function DocumentsTableSkeleton<TRow>({
         <tbody>
           {Array.from({ length: rows }, (_, rowIndex) => (
             <tr key={rowIndex}>
-              <td>
-                <Skeleton className="documents-table-skeleton-check" />
-              </td>
-              {columns.map((column, columnIndex) => (
+              <td />
+              {columns.map((column) => (
                 <td key={column.key}>
-                  <Skeleton
-                    className="documents-table-skeleton-cell"
-                    style={
-                      {
-                        "--skeleton-width": `${getCellSkeletonWidth(
-                          column.width,
-                          columnIndex,
-                          rowIndex,
-                        )}px`,
-                      } as CSSProperties
-                    }
-                  />
+                  <Skeleton className="documents-table-skeleton-cell" />
                 </td>
               ))}
             </tr>
@@ -78,15 +57,4 @@ export function DocumentsTableSkeleton<TRow>({
       </table>
     </div>
   );
-}
-
-function getCellSkeletonWidth(
-  columnWidth: number,
-  columnIndex: number,
-  rowIndex: number,
-) {
-  const maxWidth = Math.max(columnWidth - 32, 44);
-  const widthRatio = 0.56 + (((columnIndex + rowIndex) % 3) * 0.11);
-
-  return Math.round(Math.min(maxWidth, columnWidth * widthRatio));
 }
