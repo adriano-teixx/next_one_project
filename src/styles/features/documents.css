@@ -600,7 +600,6 @@
 }
 
 .documents-modal-footer {
-  gap: 12px;
   margin-top: 34px;
 }
 
@@ -636,11 +635,12 @@
 }
 
 .documents-columns-bulk-action {
-  position: relative;
-  isolation: isolate;
   display: inline-flex;
+  height: 44px;
   align-items: center;
   gap: 8px;
+  border-radius: 8px;
+  padding-inline: 16px;
   color: var(--primary);
   white-space: nowrap;
   transition:
@@ -648,23 +648,10 @@
     color 140ms ease;
 }
 
-.documents-columns-bulk-action::before {
-  position: absolute;
-  inset: -14px -18px;
-  z-index: -1;
-  border-radius: 14px;
-  content: "";
-  transition: background-color 140ms ease;
-}
-
 .documents-columns-bulk-action:hover,
 .documents-columns-bulk-action:focus-visible {
-  outline: none;
-}
-
-.documents-columns-bulk-action:hover::before,
-.documents-columns-bulk-action:focus-visible::before {
   background: #f3f3fb;
+  outline: none;
 }
 
 .documents-columns-bulk-action svg {
@@ -1279,16 +1266,7 @@
   }
 
   .documents-modal-footer {
-    gap: 12px;
     margin-top: 28px;
-  }
-
-  .documents-modal-footer button {
-    height: 36px;
-    min-width: 94px;
-    border-radius: 7px;
-    padding-inline: 14px;
-    font-size: 13px;
   }
 
   .documents-modal-close svg {
@@ -1326,6 +1304,12 @@
     font-size: 14px;
   }
 
+  .documents-columns-bulk-action {
+    height: 32px;
+    border-radius: 6px;
+    padding-inline: 12px;
+  }
+
   .documents-columns-bulk-action svg {
     width: 16px;
     height: 16px;
@@ -1338,7 +1322,7 @@
   }
 
   .documents-columns-list {
-    max-height: 390px;
+    max-height: 350px;
     gap: 8px;
   }
 

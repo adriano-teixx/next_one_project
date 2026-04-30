@@ -123,10 +123,10 @@ export function ColumnsModal({ data, onClose }: ColumnsModalProps) {
         </div>
 
         <div className="documents-modal-footer flex justify-end">
-          <Button onClick={onClose} type="button" variant="ghost">
+          <Button onClick={onClose} type="button" variant="secondary">
             {data.cancelLabel}
           </Button>
-          <Button onClick={onClose} type="button">
+          <Button className="ml-4" onClick={onClose} type="button">
             {data.confirmLabel}
           </Button>
         </div>

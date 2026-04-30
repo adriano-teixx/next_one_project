@@ -4,22 +4,22 @@ import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils/cn";
 
 const buttonVariants = cva(
-  "inline-flex h-11 min-w-[112px] items-center justify-center gap-2 rounded-lg border border-transparent px-5 text-base font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative inline-flex min-h-[32px] select-none items-center justify-center gap-2 rounded-lg border border-transparent px-3 py-1 text-sm font-semibold leading-5 transition-colors [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-95 focus-visible:outline-[var(--primary)]",
+          "bg-[rgba(12,60,247,1)] text-white hover:bg-[#0a2fbf] active:bg-[rgba(12,60,247,1)] focus-visible:outline-[rgba(12,60,247,1)]",
         secondary:
-          "border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] hover:bg-slate-50 focus-visible:outline-[var(--border)]",
+          "bg-transparent text-[rgba(4,14,35,0.64)] hover:bg-[#e9eaec] active:bg-[rgba(0,0,0,0)] focus-visible:outline-[var(--border)]",
         ghost:
-          "bg-transparent text-[var(--muted-strong)] hover:bg-[var(--surface-control-hover)] focus-visible:outline-[var(--border)]",
+          "bg-transparent text-[rgba(4,14,35,0.64)] hover:bg-[#e9eaec] active:bg-[rgba(0,0,0,0)] focus-visible:outline-[var(--border)]",
       },
       size: {
-        sm: "h-9 min-w-20 rounded-md px-3 text-sm",
-        md: "h-11 min-w-[112px] rounded-lg px-5 text-base",
-        lg: "h-12 min-w-[128px] rounded-lg px-6 text-lg",
-        icon: "size-10 min-w-0 rounded-lg px-0",
+        sm: "min-h-[32px] px-3 py-1 text-sm",
+        md: "min-h-[32px] px-3 py-1 text-sm",
+        lg: "min-h-[32px] px-3 py-1 text-sm",
+        icon: "size-8 min-h-0 px-0 py-0",
       },
     },
     defaultVariants: {
