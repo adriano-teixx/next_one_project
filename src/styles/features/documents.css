@@ -1202,86 +1202,91 @@
   }
 
   .documents-modal-backdrop-top {
-    padding-top: 19px;
+    padding-top: 28px;
   }
 
   .documents-modal-header {
-    margin-bottom: 13px;
+    margin-bottom: 20px;
   }
 
   .documents-modal-title {
-    font-size: 13px;
+    font-size: 20px;
   }
 
   .documents-modal-footer {
-    gap: 8px;
-    margin-top: 19px;
+    gap: 12px;
+    margin-top: 28px;
   }
 
   .documents-modal-footer button {
-    height: 28px;
-    padding-inline: 11px;
-    font-size: 12px;
+    height: 36px;
+    min-width: 94px;
+    border-radius: 7px;
+    padding-inline: 14px;
+    font-size: 13px;
   }
 
   .documents-modal-close svg {
-    width: 15px;
-    height: 15px;
+    width: 22px;
+    height: 22px;
   }
 
   .documents-columns-modal {
-    width: 592px;
-    padding: 16px;
-    border-radius: 9px;
+    width: 884px;
+    max-width: calc(100vw - 80px);
+    max-height: calc(100vh - 56px);
+    padding: 24px;
+    border-radius: 14px;
   }
 
   .documents-columns-search {
-    height: 27px;
-    margin-bottom: 21px;
-    border-radius: 5px;
-    padding-inline: 9px;
-    font-size: 12px;
+    height: 40px;
+    margin-bottom: 32px;
+    border-radius: 6px;
+    padding-inline: 14px;
+    font-size: 18px;
   }
 
   .documents-columns-search svg {
-    width: 14px;
-    height: 14px;
+    width: 21px;
+    height: 21px;
   }
 
   .documents-columns-grid {
-    gap: 6px;
+    gap: 8px;
   }
 
   .documents-columns-section-header {
-    margin-bottom: 13px;
-    font-size: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
   }
 
   .documents-columns-section-header svg {
-    width: 11px;
-    height: 11px;
+    width: 16px;
+    height: 16px;
   }
 
   .documents-columns-empty {
-    height: 133px;
-    border-radius: 6px;
-    font-size: 10px;
+    height: 198px;
+    border-radius: 10px;
+    font-size: 14px;
   }
 
   .documents-columns-list {
-    gap: 6px;
+    max-height: 390px;
+    gap: 8px;
   }
 
   .documents-columns-item {
-    height: 32px;
-    border-radius: 6px;
-    padding-inline: 11px;
-    font-size: 10px;
+    height: 48px;
+    border-radius: 10px;
+    padding-inline: 16px;
+    font-size: 14px;
   }
 
   .documents-columns-item svg {
-    width: 11px;
-    height: 11px;
+    width: 16px;
+    height: 16px;
   }
 
   .documents-filter-drawer {
