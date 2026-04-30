@@ -1,13 +1,58 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUp,
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  X,
+} from "lucide-react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils/cn";
 import type { ColumnsModalData } from "../../types/document-page";
 
 type ColumnsModalProps = {
   data: ColumnsModalData;
   onClose: () => void;
 };
+
+type ColumnsModalActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode;
+};
+
+function ColumnsModalBulkAction({
+  children,
+  className,
+  ...props
+}: ColumnsModalActionProps) {
+  return (
+    <button
+      className={cn("documents-columns-bulk-action", className)}
+      type="button"
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+function ColumnsModalIconAction({
+  children,
+  className,
+  ...props
+}: ColumnsModalActionProps) {
+  return (
+    <button
+      className={cn("documents-columns-icon-action", className)}
+      type="button"
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
 
 export function ColumnsModal({ data, onClose }: ColumnsModalProps) {
   return (
@@ -32,9 +77,10 @@ export function ColumnsModal({ data, onClose }: ColumnsModalProps) {
           <div>
             <div className="documents-columns-section-header flex items-center justify-between font-bold">
               <span>{data.unselectedLabel}</span>
-              <button className="flex items-center gap-2 text-[var(--primary)]" type="button">
-                {data.addAllLabel} <ChevronRight size={16} />
-              </button>
+              <ColumnsModalBulkAction aria-label={data.addAllLabel}>
+                <span>{data.addAllLabel}</span>
+                <ChevronRight />
+              </ColumnsModalBulkAction>
             </div>
             <div className="documents-columns-empty grid place-items-center rounded-lg border border-[var(--border-soft)] bg-[#f5f5f7] text-center text-[#737885]">
               {data.emptyMessage}
@@ -44,9 +90,10 @@ export function ColumnsModal({ data, onClose }: ColumnsModalProps) {
           <div>
             <div className="documents-columns-section-header flex items-center justify-between font-bold">
               <span>{data.selectedLabel}</span>
-              <button className="flex items-center gap-2 text-[var(--primary)]" type="button">
-                <ChevronLeft size={16} /> {data.removeAllLabel}
-              </button>
+              <ColumnsModalBulkAction aria-label={data.removeAllLabel}>
+                <ChevronLeft />
+                <span>{data.removeAllLabel}</span>
+              </ColumnsModalBulkAction>
             </div>
             <div className="documents-columns-list">
               {data.selectedColumns.map((column) => (
@@ -54,9 +101,21 @@ export function ColumnsModal({ data, onClose }: ColumnsModalProps) {
                   className="documents-columns-item flex items-center rounded-lg border border-[var(--border-soft)] bg-[#f5f5f7] font-bold text-[#545b68]"
                   key={column}
                 >
-                  <ChevronLeft className="mr-4" size={16} />
+                  <ColumnsModalIconAction
+                    aria-label={`Remover coluna ${column}`}
+                    className="mr-4"
+                  >
+                    <ChevronLeft />
+                  </ColumnsModalIconAction>
                   <span>{column}</span>
-                  <span className="ml-auto flex gap-5 text-[#6c7280]">↑ ↓</span>
+                  <span className="documents-columns-order-actions ml-auto flex text-[#6c7280]">
+                    <ColumnsModalIconAction aria-label={`Mover ${column} para cima`}>
+                      <ArrowUp />
+                    </ColumnsModalIconAction>
+                    <ColumnsModalIconAction aria-label={`Mover ${column} para baixo`}>
+                      <ArrowDown />
+                    </ColumnsModalIconAction>
+                  </span>
                 </div>
               ))}
             </div>
