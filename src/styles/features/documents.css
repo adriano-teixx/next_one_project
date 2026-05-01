@@ -318,6 +318,167 @@
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
 }
 
+.documents-labels-picker {
+  display: flex;
+  flex-direction: column;
+}
+
+.documents-label-search-wrap {
+  padding: 16px;
+}
+
+.documents-label-search-field {
+  position: relative;
+  display: flex;
+  min-height: 36px;
+  min-width: 0;
+  cursor: text;
+  align-items: center;
+  border: 1px solid rgba(112, 116, 125, 0.2);
+  border-radius: 8px;
+  background: #ffffff;
+  padding-inline: 12px;
+  color: rgba(4, 14, 35, 0.86);
+  box-shadow:
+    rgb(0, 0, 0) 0 0 0 0,
+    rgba(21, 21, 21, 0.08) 0 1px 2px 0;
+}
+
+.documents-label-search-field::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow:
+    rgb(0, 0, 0) 0 0 0 0,
+    rgba(21, 21, 21, 0.08) 0 1px 2px 0;
+  content: "";
+}
+
+.documents-label-search-field input {
+  min-width: 0;
+  flex-basis: 0%;
+  flex-grow: 1;
+  overflow: hidden;
+  border: 0;
+  color: rgba(4, 14, 35, 0.86);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  outline: 0;
+  text-overflow: ellipsis;
+}
+
+.documents-label-search-field input::placeholder {
+  color: rgba(4, 14, 35, 0.54);
+}
+
+.documents-label-search-icon {
+  display: flex;
+  align-items: center;
+  margin-inline-start: 8px;
+  color: #71717a;
+}
+
+.documents-label-search-svg {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  margin-right: -3px;
+  color: #71717a;
+  fill: currentcolor;
+  user-select: none;
+}
+
+.documents-labels-options {
+  display: grid;
+  gap: 12px;
+  max-height: 282px;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  padding: 14px 16px 8px;
+}
+
+.documents-labels-option {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 12px;
+}
+
+.documents-labels-option input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.documents-labels-option input:checked {
+  border-color: rgba(12, 60, 247, 1);
+  background: rgba(12, 60, 247, 1);
+}
+
+.documents-labels-option input:checked::before {
+  display: block;
+  width: 10px;
+  height: 6px;
+  margin: 5px auto 0;
+  border-bottom: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  content: "";
+  transform: rotate(-45deg);
+}
+
+.documents-labels-chip {
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 20px;
+  align-items: center;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.documents-labels-apply-wrap {
+  padding: 8px 16px 16px;
+}
+
+.documents-labels-apply {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  min-height: 32px;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(234, 235, 236, 1);
+  padding-block: 4px;
+  padding-inline: 12px;
+  color: rgba(137, 140, 149, 1);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.documents-labels-apply:not(:disabled) {
+  background: rgba(12, 60, 247, 1);
+  color: #ffffff;
+}
+
+.documents-labels-apply:disabled {
+  pointer-events: none;
+}
+
 .documents-labels-no-selection {
   display: flex;
   flex-direction: column;
@@ -1204,6 +1365,24 @@
   .documents-labels-menu {
     top: calc(100% + 6px);
     width: 302px;
+  }
+
+  .documents-label-search-wrap {
+    padding: 16px;
+  }
+
+  .documents-label-search-field {
+    min-height: 36px;
+  }
+
+  .documents-label-search-field input {
+    font-size: 14px;
+  }
+
+  .documents-labels-options {
+    gap: 12px;
+    max-height: 282px;
+    padding: 14px 16px 8px;
   }
 
   .documents-labels-no-selection {

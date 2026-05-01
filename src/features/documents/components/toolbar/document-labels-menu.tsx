@@ -1,4 +1,15 @@
+"use client";
+
 import { Plus, Settings } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { DocumentLabelSearchField } from "./document-label-search-field";
+
+type DocumentLabel = {
+  color: string;
+  id: string;
+  name: string;
+  textColor?: string;
+};
 
 type DocumentLabelsMenuProps = {
   items: string[];
@@ -11,7 +22,11 @@ export function DocumentLabelsMenu({
 }: DocumentLabelsMenuProps) {
   return (
     <div className="documents-labels-menu">
-      {showNoSelectionHint ? <DocumentLabelsNoSelection /> : null}
+      {showNoSelectionHint ? (
+        <DocumentLabelsNoSelection />
+      ) : (
+        <DocumentLabelsPicker />
+      )}
       <ul className="documents-labels-menu-list">
         {items.map((item) => (
           <li className="documents-labels-menu-item" key={item}>
@@ -34,6 +49,88 @@ export function DocumentLabelsMenu({
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function DocumentLabelsPicker() {
+  const [labels, setLabels] = useState<DocumentLabel[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLabelIds, setSelectedLabelIds] = useState<string[]>([]);
+  const normalizedSearchTerm = searchTerm.trim().toLocaleLowerCase("pt-BR");
+  const filteredLabels = useMemo(() => {
+    if (!normalizedSearchTerm) {
+      return labels;
+    }
+
+    return labels.filter((label) =>
+      label.name.toLocaleLowerCase("pt-BR").includes(normalizedSearchTerm)
+    );
+  }, [labels, normalizedSearchTerm]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch("/api/etiquetas")
+      .then((response) => response.json())
+      .then((data: { labels?: DocumentLabel[] }) => {
+        if (isMounted) {
+          setLabels(data.labels ?? []);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setLabels([]);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  function toggleLabel(labelId: string) {
+    setSelectedLabelIds((currentLabelIds) =>
+      currentLabelIds.includes(labelId)
+        ? currentLabelIds.filter((currentLabelId) => currentLabelId !== labelId)
+        : [...currentLabelIds, labelId]
+    );
+  }
+
+  return (
+    <div className="documents-labels-picker">
+      <DocumentLabelSearchField onChange={setSearchTerm} value={searchTerm} />
+
+      <div className="documents-labels-options">
+        {filteredLabels.map((label) => (
+          <label className="documents-labels-option" key={label.id}>
+            <input
+              checked={selectedLabelIds.includes(label.id)}
+              onChange={() => toggleLabel(label.id)}
+              type="checkbox"
+            />
+            <span
+              className="documents-labels-chip"
+              style={{
+                backgroundColor: label.color,
+                color: label.textColor ?? "#ffffff",
+              }}
+            >
+              {label.name}
+            </span>
+          </label>
+        ))}
+      </div>
+
+      <div className="documents-labels-apply-wrap">
+        <button
+          className="documents-labels-apply"
+          disabled={selectedLabelIds.length === 0}
+          type="button"
+        >
+          Aplicar etiqueta
+        </button>
+      </div>
     </div>
   );
 }
