@@ -8,6 +8,8 @@ type MonitoringTableProps = {
 };
 
 export function MonitoringTable({ branches, days }: MonitoringTableProps) {
+  const currentDay = String(new Date().getDate()).padStart(2, "0");
+
   return (
     <section
       className="monitoring-table-card"
@@ -17,7 +19,12 @@ export function MonitoringTable({ branches, days }: MonitoringTableProps) {
         <strong>Filiais</strong>
         <div className="monitoring-days-head">
           {days.map((day) => (
-            <span key={day}>{day}</span>
+            <span
+              className={day === currentDay ? "is-current-day" : undefined}
+              key={day}
+            >
+              {day}
+            </span>
           ))}
         </div>
         <strong>Resumo do período</strong>
