@@ -164,6 +164,57 @@ body {
   .documents-filter-button {
     width: auto;
   }
+
+  .monitoring-page {
+    --monitoring-table-days-width: 784px;
+    --monitoring-table-min-width: 1264px;
+  }
+
+  .monitoring-header {
+    gap: 18px;
+  }
+
+  .monitoring-header h1 {
+    font-size: 26px;
+  }
+
+  .monitoring-header p {
+    font-size: 16px;
+  }
+
+  .monitoring-header-actions {
+    gap: 12px;
+  }
+
+  .monitoring-updated,
+  .monitoring-filter-button {
+    height: 46px;
+    gap: 8px;
+    padding-inline: 16px;
+    font-size: 14px;
+  }
+
+  .monitoring-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .monitoring-metric-card {
+    grid-template-columns: 46px minmax(0, 1fr);
+    min-height: 92px;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .monitoring-metric-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .monitoring-legend {
+    column-gap: 18px;
+    padding: 14px 16px;
+  }
 }
 
 /* Tablet portrait */
@@ -256,6 +307,112 @@ body {
 
   .documents-filter-button {
     height: 40px;
+  }
+
+  .monitoring-page {
+    --monitoring-table-days-width: 756px;
+    --monitoring-table-min-width: 1136px;
+  }
+
+  .monitoring-header {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .monitoring-header h1 {
+    font-size: 24px;
+  }
+
+  .monitoring-header p {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .monitoring-header-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .monitoring-updated,
+  .monitoring-filter-button {
+    height: 40px;
+    gap: 8px;
+    padding-inline: 14px;
+    font-size: 13px;
+  }
+
+  .monitoring-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .monitoring-metric-card {
+    grid-template-columns: 46px minmax(0, 1fr);
+    min-height: 92px;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .monitoring-metric-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .monitoring-metric-card strong {
+    font-size: 22px;
+  }
+
+  .monitoring-metric-card span {
+    margin-top: 6px;
+    font-size: 13px;
+  }
+
+  .monitoring-metric-card small {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .monitoring-legend {
+    column-gap: 20px;
+    row-gap: 14px;
+    margin-bottom: 18px;
+    padding: 18px;
+  }
+
+  .monitoring-legend-item {
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .monitoring-legend-line {
+    width: 30px;
+    height: 10px;
+  }
+
+  .monitoring-table-head,
+  .monitoring-row {
+    grid-template-columns: 240px minmax(var(--monitoring-table-days-width), 1fr) 140px;
+  }
+
+  .monitoring-table-head {
+    min-height: 52px;
+    font-size: 13px;
+  }
+
+  .monitoring-branch-cell {
+    gap: 14px;
+  }
+
+  .monitoring-branch-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .monitoring-branch-cell strong,
+  .monitoring-branch-cell span {
+    font-size: 12px;
   }
 }
 
@@ -616,6 +773,207 @@ body {
     max-width: calc(100vw - var(--content-gutter-left) - var(--content-gutter-right));
     overflow-x: auto;
     overflow-y: hidden;
+  }
+
+  .monitoring-page {
+    --monitoring-table-days-width: 728px;
+    --monitoring-table-min-width: 1038px;
+  }
+
+  .monitoring-header {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .monitoring-header h1 {
+    font-size: 22px;
+    line-height: 1.18;
+  }
+
+  .monitoring-header p {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .monitoring-header-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .monitoring-updated {
+    grid-column: 1 / -1;
+    height: auto;
+    min-height: 36px;
+    justify-content: flex-start;
+    font-size: 13px;
+  }
+
+  .monitoring-filter-button {
+    height: 42px;
+    justify-content: center;
+    gap: 8px;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+
+  .monitoring-filter-button svg,
+  .monitoring-updated svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .monitoring-metrics {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .monitoring-metric-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    min-height: 88px;
+    gap: 14px;
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .monitoring-metric-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .monitoring-metric-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .monitoring-metric-card strong {
+    font-size: 22px;
+  }
+
+  .monitoring-metric-card span {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .monitoring-metric-card small {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .monitoring-legend {
+    min-height: 0;
+    column-gap: 14px;
+    row-gap: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .monitoring-legend-item {
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .monitoring-legend-line {
+    width: 24px;
+    height: 8px;
+  }
+
+  .monitoring-legend-divider {
+    display: none;
+  }
+
+  .monitoring-legend-icon {
+    width: 22px;
+    height: 22px;
+    flex-basis: 22px;
+  }
+
+  .monitoring-legend-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .monitoring-table-card {
+    max-width: calc(100vw - var(--content-gutter-left) - var(--content-gutter-right));
+    border-radius: 8px;
+  }
+
+  .monitoring-table-head,
+  .monitoring-row {
+    grid-template-columns: 190px minmax(var(--monitoring-table-days-width), 1fr) 120px;
+  }
+
+  .monitoring-table-head {
+    min-height: 58px;
+    font-size: 13px;
+  }
+
+  .monitoring-table-head > strong {
+    padding-inline: 14px;
+  }
+
+  .monitoring-days-head span {
+    width: 28px;
+    height: 28px;
+  }
+
+  .monitoring-row {
+    min-height: 68px;
+  }
+
+  .monitoring-branch-cell {
+    gap: 10px;
+    padding-inline: 12px;
+  }
+
+  .monitoring-branch-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .monitoring-branch-avatar svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .monitoring-branch-cell strong,
+  .monitoring-branch-cell span {
+    font-size: 12px;
+  }
+
+  .monitoring-branch-cell span {
+    margin-top: 5px;
+  }
+
+  .monitoring-dot {
+    width: 17px;
+    height: 17px;
+  }
+
+  .monitoring-summary-cell {
+    gap: 8px;
+  }
+
+  .monitoring-summary-pill {
+    gap: 3px;
+    font-size: 12px;
+  }
+
+  .monitoring-summary-pill svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .monitoring-help {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.35;
   }
 
   .documents-table table {
