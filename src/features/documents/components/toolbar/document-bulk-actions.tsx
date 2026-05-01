@@ -2,6 +2,7 @@
 
 import {
   ChevronDown,
+  ChevronUp,
   Columns3,
   Download,
   FileSearch,
@@ -10,6 +11,7 @@ import {
 import { useState } from "react";
 import { InlineAction } from "@/components/ui/tabs";
 import type { DocumentsToolbarAction } from "../../types/document-page";
+import { DocumentLabelsMenu } from "./document-labels-menu";
 
 type DocumentBulkActionsProps = {
   actions: DocumentsToolbarAction[];
@@ -68,13 +70,16 @@ function ToolbarActionButton({
 }) {
   const Icon = toolbarActionIcons[action.icon];
   const [isOpen, setIsOpen] = useState(false);
-  const isDisabled = action.key !== "columns" && action.disabled && !isSelectionActive;
+  const isDisabled =
+    action.key !== "columns" && action.disabled && !isSelectionActive;
 
   return (
     <div className="documents-toolbar-action-wrap">
       <InlineAction
         className={
-          action.key === "columns" ? "documents-toolbar-action-columns" : undefined
+          action.key === "columns"
+            ? "documents-toolbar-action-columns"
+            : undefined
         }
         disabled={isDisabled}
         onClick={
@@ -87,16 +92,29 @@ function ToolbarActionButton({
       >
         <Icon size={22} />
         {action.label}
-        {action.menu ? <ChevronDown size={16} /> : null}
+        {action.menu ? (
+          isOpen ? (
+            <ChevronUp size={16} />
+          ) : (
+            <ChevronDown size={16} />
+          )
+        ) : null}
       </InlineAction>
       {isOpen && action.menuItems?.length ? (
-        <div className="documents-toolbar-menu">
-          {action.menuItems.map((item) => (
-            <button key={item} type="button">
-              {item}
-            </button>
-          ))}
-        </div>
+        action.key === "labels" ? (
+          <DocumentLabelsMenu
+            items={action.menuItems}
+            showNoSelectionHint={!isSelectionActive}
+          />
+        ) : (
+          <div className="documents-toolbar-menu">
+            {action.menuItems.map((item) => (
+              <button key={item} type="button">
+                {item}
+              </button>
+            ))}
+          </div>
+        )
       ) : null}
     </div>
   );
