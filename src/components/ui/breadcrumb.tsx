@@ -14,7 +14,7 @@ export function BreadcrumbList({
   return (
     <ol
       className={cn(
-        "flex flex-wrap items-center gap-1.5 break-words text-sm text-[var(--muted)]",
+        "flex flex-wrap items-center gap-1 break-words text-xs text-[var(--muted)]",
         className,
       )}
       data-slot="breadcrumb-list"
@@ -29,7 +29,7 @@ export function BreadcrumbItem({
 }: ComponentProps<"li">) {
   return (
     <li
-      className={cn("inline-flex items-center gap-1.5", className)}
+      className={cn("inline-flex items-center", className)}
       data-slot="breadcrumb-item"
       {...props}
     />
@@ -48,7 +48,7 @@ export function BreadcrumbLink({
   return (
     <Component
       className={cn(
-        "transition-colors hover:text-[var(--foreground)]",
+        "inline-flex h-8 items-center gap-1.5 rounded-md bg-[var(--surface-muted)] px-3 font-semibold text-[var(--muted)] transition-colors hover:bg-[var(--sidebar-link-hover-bg)] hover:text-[var(--foreground)] [&>svg]:size-3.5",
         className,
       )}
       data-slot="breadcrumb-link"
@@ -64,7 +64,10 @@ export function BreadcrumbPage({
   return (
     <span
       aria-current="page"
-      className={cn("font-medium text-[var(--foreground)]", className)}
+      className={cn(
+        "inline-flex h-8 items-center gap-1.5 rounded-md bg-[color-mix(in_srgb,var(--primary)_10%,var(--surface))] px-3 font-bold text-[var(--primary)] [&>svg]:size-3.5",
+        className,
+      )}
       data-slot="breadcrumb-page"
       role="link"
       {...props}
@@ -80,7 +83,10 @@ export function BreadcrumbSeparator({
   return (
     <li
       aria-hidden="true"
-      className={cn("[&>svg]:size-3.5", className)}
+      className={cn(
+        "mx-0.5 inline-flex h-10 items-center text-[var(--muted)] [&>svg]:size-4",
+        className,
+      )}
       data-slot="breadcrumb-separator"
       role="presentation"
       {...props}

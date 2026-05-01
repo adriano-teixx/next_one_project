@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronDown, ChevronUp, Settings, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, X } from "lucide-react";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { CompanySelectorData } from "../../types/document-page";
 
@@ -11,7 +11,6 @@ type CompanySelectorProps = {
 
 export function CompanySelector({ data, showPicker = true }: CompanySelectorProps) {
   const [isCompanyMenuOpen, setCompanyMenuOpen] = useState(false);
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [companySearch, setCompanySearch] = useState("");
   const companyPickerRef = useRef<HTMLDivElement>(null);
   const companyInputRef = useRef<HTMLInputElement>(null);
@@ -230,29 +229,6 @@ export function CompanySelector({ data, showPicker = true }: CompanySelectorProp
             </span>
           </a>
         ) : null}
-      </div>
-
-      <div className="company-primary-actions flex items-center gap-6">
-        <div className="relative">
-          <button
-            aria-expanded={isSettingsOpen}
-            aria-label={data.settingsAriaLabel}
-            className="company-settings-button grid place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]"
-            onClick={() => setSettingsOpen((isOpen) => !isOpen)}
-            type="button"
-          >
-            <Settings size={25} />
-          </button>
-          {isSettingsOpen ? (
-            <div className="company-settings-menu">
-              {data.settingsActions.map((action) => (
-                <button key={action} type="button">
-                  {action}
-                </button>
-              ))}
-            </div>
-          ) : null}
-        </div>
       </div>
     </div>
   );

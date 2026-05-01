@@ -14,7 +14,7 @@
   --surface-control: #e9ecef;
   --surface-control-hover: #ececed;
   --topbar-bg: #f8fafc;
-  --sidebar-bg: #ffffff;
+  --sidebar-bg: #eef1f5;
   --sidebar-section: #8d929d;
   --sidebar-link: #5b6270;
   --sidebar-link-icon: #667085;
@@ -160,23 +160,34 @@ button:disabled {
 
 .app-topbar {
   height: var(--topbar-height);
+  background: var(--background);
+}
+
+.app-shell {
+  background: var(--sidebar-bg);
 }
 
 .app-shell-grid {
   display: grid;
+  min-height: 100dvh;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  background: var(--sidebar-bg);
 }
 
 .app-shell-main {
   min-width: 0;
-  padding-top: var(--topbar-height);
+  min-height: 100dvh;
+  border-top-left-radius: 24px;
+  background: var(--background);
+  overflow: hidden;
 }
 
 .app-sidebar {
   position: sticky;
-  top: var(--topbar-height);
-  height: calc(100dvh - var(--topbar-height));
+  top: 0;
+  height: 100dvh;
   overflow: visible;
+  background: var(--sidebar-bg);
 }
 
 .app-content {

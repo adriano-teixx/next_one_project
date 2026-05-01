@@ -1,7 +1,7 @@
 .monitoring-page {
   --monitoring-table-days-width: 840px;
   --monitoring-table-min-width: 1380px;
-  --monitoring-page-bg: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+  --monitoring-page-bg: #f8faff;
   --monitoring-heading: #1f2937;
   --monitoring-text: #5f6673;
   --monitoring-muted: #697386;

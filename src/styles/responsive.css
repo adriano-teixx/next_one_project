@@ -32,13 +32,9 @@ body {
   padding-left: max(1.75rem, var(--safe-left));
 }
 
-.app-shell-main {
-  padding-top: calc(var(--topbar-height) + var(--safe-top));
-}
-
 .app-sidebar {
-  top: calc(var(--topbar-height) + var(--safe-top));
-  height: calc(100svh - var(--topbar-height) - var(--safe-top));
+  top: 0;
+  height: 100svh;
 }
 
 .app-content {
@@ -432,7 +428,7 @@ body {
 
   .app-shell-grid {
     display: block;
-    padding-top: calc(var(--topbar-height) + var(--safe-top));
+    background: var(--background);
   }
 
   .app-topbar {
@@ -543,7 +539,7 @@ body {
   }
 
   .app-shell-main {
-    padding-top: 0;
+    border-top-left-radius: 0;
   }
 
   .app-content {

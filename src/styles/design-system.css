@@ -134,8 +134,9 @@
 
 .app-sidebar-panel {
   display: flex;
-  height: calc(100dvh - var(--topbar-height));
+  height: 100dvh;
   flex-direction: column;
+  background: var(--sidebar-bg);
   overflow-y: auto;
   overflow-x: hidden;
   padding: 36px 22px 28px;

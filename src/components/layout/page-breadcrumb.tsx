@@ -1,13 +1,12 @@
 import type { Route } from "next";
+import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
-import { Fragment } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
 export type PageBreadcrumbItem = {
@@ -27,18 +26,24 @@ export function PageBreadcrumb({ items }: PageBreadcrumbProps) {
           const isLastItem = index === items.length - 1;
 
           return (
-            <Fragment key={`${item.label}-${index}`}>
-              <BreadcrumbItem>
-                {item.href && !isLastItem ? (
-                  <BreadcrumbLink asChild>
-                    <Link href={item.href}>{item.label}</Link>
-                  </BreadcrumbLink>
-                ) : (
-                  <BreadcrumbPage>{item.label}</BreadcrumbPage>
-                )}
-              </BreadcrumbItem>
-              {!isLastItem ? <BreadcrumbSeparator /> : null}
-            </Fragment>
+            <BreadcrumbItem key={`${item.label}-${index}`}>
+              {item.href && !isLastItem ? (
+                <BreadcrumbLink asChild>
+                  <Link href={item.href}>
+                    {index === 0 && item.label === "Home" ? (
+                      <Home aria-hidden size={14} />
+                    ) : null}
+                    {index > 0 ? <ChevronRight aria-hidden size={14} /> : null}
+                    {item.label}
+                  </Link>
+                </BreadcrumbLink>
+              ) : (
+                <BreadcrumbPage>
+                  {index > 0 ? <ChevronRight aria-hidden size={14} /> : null}
+                  {item.label}
+                </BreadcrumbPage>
+              )}
+            </BreadcrumbItem>
           );
         })}
       </BreadcrumbList>
