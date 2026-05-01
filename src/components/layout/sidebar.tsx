@@ -53,7 +53,9 @@ export function Sidebar({ data }: SidebarProps) {
         <div className="app-sidebar-content flex min-w-0 flex-col">
           {data.sections.map((section) => (
             <div key={section.title}>
-              <p className="app-sidebar-section-title">{section.title}</p>
+              <p className="app-sidebar-section-title">
+                {formatSectionTitle(section.title)}
+              </p>
               <ul className="app-sidebar-section-list">
                 {section.items.map((item) => {
                   const Icon = itemIconMap[item] ?? FileText;
@@ -95,4 +97,10 @@ export function Sidebar({ data }: SidebarProps) {
       </nav>
     </aside>
   );
+}
+
+function formatSectionTitle(title: string) {
+  return title
+    .toLocaleLowerCase("pt-BR")
+    .replace(/(^|\s)\S/gu, (match) => match.toLocaleUpperCase("pt-BR"));
 }
