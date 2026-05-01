@@ -57,7 +57,12 @@ export const appLayoutConfig: AppLayoutConfig = {
       },
       {
         title: "Captura e Envio",
-        items: ["Integrações", "Recuperar Notas", "Sincronizar Notas"],
+        items: [
+          "Integrações",
+          "Monitoramento",
+          "Recuperar Notas",
+          "Sincronizar Notas",
+        ],
       },
     ],
   },

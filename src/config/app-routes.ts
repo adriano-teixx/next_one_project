@@ -16,6 +16,7 @@ export const AppRoutes = {
   },
   capture: {
     integrations: "/captura-e-envio/integracoes",
+    monitoring: "/captura-e-envio/monitoramento",
     recoverNotes: "/captura-e-envio/recuperar-notas",
     syncNotes: "/captura-e-envio/sincronizar-notas",
   },
@@ -23,13 +24,14 @@ export const AppRoutes = {
 } as const;
 
 export const SidebarItemRoutes: Record<string, string> = {
-  "Boletos": AppRoutes.finance.boletos,
+  Boletos: AppRoutes.finance.boletos,
   "CF-e SAT": AppRoutes.documents.cfeSat,
   "CT-e": AppRoutes.documents.cte,
   "Gestão de Pagamentos": AppRoutes.finance.payments,
   "Home Qive": AppRoutes.home,
-  "Integrações": AppRoutes.capture.integrations,
+  Integrações: AppRoutes.capture.integrations,
   "MDF-e": AppRoutes.documents.mdfe,
+  Monitoramento: AppRoutes.capture.monitoring,
   "NF-e": AppRoutes.documents.nfe,
   "NF-e em Etapas": AppRoutes.documents.nfeStages,
   "NFC-e": AppRoutes.documents.nfce,

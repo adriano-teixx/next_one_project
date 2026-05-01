@@ -6,6 +6,7 @@ import {
   Banknote,
   ChevronRight,
   CircleHelp,
+  Activity,
   FileText,
   Home,
   LucideIcon,
@@ -25,14 +26,15 @@ type SidebarProps = {
 };
 
 const itemIconMap: Record<string, LucideIcon> = {
-  "Boletos": ReceiptText,
+  Boletos: ReceiptText,
   "CF-e SAT": FileText,
   "CT-e": FileText,
   "Gestão de Pagamentos": Banknote,
   "Home Qive": Home,
   "Importar XMLs": ArrowDownUp,
-  "Integrações": ArrowUpDown,
+  Integrações: ArrowUpDown,
   "MDF-e": FileText,
+  Monitoramento: Activity,
   "NF-e": FileText,
   "NF-e em Etapas": FileText,
   "NFC-e": FileText,
@@ -51,13 +53,12 @@ export function Sidebar({ data }: SidebarProps) {
         <div className="app-sidebar-content flex min-w-0 flex-col">
           {data.sections.map((section) => (
             <div key={section.title}>
-              <p className="app-sidebar-section-title">
-                {section.title}
-              </p>
+              <p className="app-sidebar-section-title">{section.title}</p>
               <ul className="app-sidebar-section-list">
                 {section.items.map((item) => {
                   const Icon = itemIconMap[item] ?? FileText;
-                  const href = (SidebarItemRoutes[item] ?? AppRoutes.home) as Route;
+                  const href = (SidebarItemRoutes[item] ??
+                    AppRoutes.home) as Route;
                   const isActive =
                     href === AppRoutes.home
                       ? pathname === href
