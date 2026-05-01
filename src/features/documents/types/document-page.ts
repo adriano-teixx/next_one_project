@@ -95,7 +95,6 @@ export type ColumnsModalData = {
   emptyMessage: string;
   searchPlaceholder: string;
   selectedLabel: string;
-  selectedColumns: string[];
   title: string;
   unselectedLabel: string;
   removeAllLabel: string;

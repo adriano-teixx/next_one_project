@@ -675,6 +675,11 @@
   scrollbar-width: thin;
 }
 
+.documents-columns-drop-zone {
+  min-height: 285px;
+  align-content: start;
+}
+
 .documents-columns-list::-webkit-scrollbar {
   width: 10px;
 }
@@ -689,6 +694,14 @@
   border-radius: 15px;
   padding-inline: 28px;
   font-size: 20px;
+}
+
+.documents-columns-item[draggable="true"] {
+  cursor: grab;
+}
+
+.documents-columns-item[draggable="true"]:active {
+  cursor: grabbing;
 }
 
 .documents-columns-icon-action {
@@ -1324,6 +1337,10 @@
   .documents-columns-list {
     max-height: 350px;
     gap: 8px;
+  }
+
+  .documents-columns-drop-zone {
+    min-height: 198px;
   }
 
   .documents-columns-item {

@@ -89,7 +89,6 @@ export const columnsModalData: ColumnsModalData = {
   emptyMessage: "Arraste colunas para cá ou use os botões de seta",
   removeAllLabel: "Remover todas",
   searchPlaceholder: "Encontre colunas digitando aqui",
-  selectedColumns: selectedColumnLabels,
   selectedLabel: "Selecionadas",
   title: "Organizar colunas",
   unselectedLabel: "Não Selecionadas",

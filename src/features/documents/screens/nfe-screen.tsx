@@ -35,6 +35,9 @@ type ActiveOverlay = "columns" | "filters" | "document" | null;
 export function NfeScreen() {
   const [activeTab, setActiveTab] = useState(documentsToolbarData.tabs[0]);
   const [activeOverlay, setActiveOverlay] = useState<ActiveOverlay>(null);
+  const [visibleColumnKeys, setVisibleColumnKeys] = useState(() =>
+    nfeTableColumns.map((column) => column.key)
+  );
   const [isAllCurrentPurposeSelected, setAllCurrentPurposeSelected] =
     useState(false);
   const [selectedDocumentIds, setSelectedDocumentIds] = useState<string[]>([]);
@@ -53,6 +56,13 @@ export function NfeScreen() {
     : selectedDocumentIds;
   const totalDocuments = documentsQuery.data?.total ?? 0;
   const totalValue = documentsQuery.data?.totalValue ?? "R$ 0,00";
+  const visibleColumns = visibleColumnKeys
+    .map((columnKey) =>
+      nfeTableColumns.find((column) => column.key === columnKey)
+    )
+    .filter((column): column is (typeof nfeTableColumns)[number] =>
+      Boolean(column)
+    );
 
   function handleRowAction(action: DataTableRowAction, row: DocumentRow) {
     if (action.key === "view") {
@@ -112,10 +122,10 @@ export function NfeScreen() {
               totalValue={totalValue}
             />
             {documentsQuery.isLoading ? (
-              <DocumentsTableSkeleton columns={nfeTableColumns} rows={25} />
+              <DocumentsTableSkeleton columns={visibleColumns} rows={25} />
             ) : (
               <DocumentsTable
-                columns={nfeTableColumns}
+                columns={visibleColumns}
                 getRowId={(row) => row.number}
                 initialSort={nfeInitialTableSort}
                 onSelectionChange={handleSelectionChange}
@@ -142,8 +152,17 @@ export function NfeScreen() {
 
       {activeOverlay === "columns" ? (
         <ColumnsModal
+          columns={nfeTableColumns.map((column) => ({
+            key: column.key,
+            label: column.label,
+          }))}
           data={columnsModalData}
+          onApply={(nextVisibleColumnKeys) => {
+            setVisibleColumnKeys(nextVisibleColumnKeys);
+            setActiveOverlay(null);
+          }}
           onClose={() => setActiveOverlay(null)}
+          selectedColumnKeys={visibleColumnKeys}
         />
       ) : null}
       {activeOverlay === "filters" ? (
